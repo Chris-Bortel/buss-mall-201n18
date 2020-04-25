@@ -5,6 +5,7 @@ var productOneEl = document.getElementById('product-1');
 var productTwoEl = document.getElementById('product-2');
 var productThreeEl = document.getElementById('product-3');
 var divEl = document.getElementById('product-container');
+var productList = document.getElementById('productList');
 
 var clickTracker = 3;
 
@@ -61,16 +62,27 @@ new Product('boots', 'assets/boots.jpg');
 // // new Product('usb', 'assets/usb.jpg');
 // new Product('water-can', 'assets/water-can.jpg');
 // new Product('wine-glass', 'assets/wine-glass.jpg');
+Product.prototype.renderProductList = function () {
+  var productListUlElement = document.createElement('li');
+  // productListUlElement.textContent = 'ergasdfg';
+  productListUlElement.textContent = this.name , this.clicked;
+  productList.appendChild(productListUlElement);
+};
+var bagImage = new Product('bag', 'assets/bag.jpg');
+bagImage.renderProductList();
 
 
-// add an eventlister
+
 function handleClick(event){
-
-  // make a variable to store the clicked product
+  console.log(event);
+// make a variable to store the clicked product
   var clickedProductImage = event.target.title;
   for (var i = 0; i < productArray.length ; i++) {
     if (clickedProductImage === productArray[i].name) {
+      console.log('additonally', productArray[i].name);
+      console.log('Before',productArray[i].clicked);
       productArray[i].clicked++;
+      console.log('After',productArray[i].clicked);
     }
     // need to add a function to track the number of clicks that the user has made.
   }
@@ -84,6 +96,5 @@ function handleClick(event){
 }
 
 divEl.addEventListener('click', handleClick);
-//since we made the event, we just need an event listener
 
 imageGenerator();
