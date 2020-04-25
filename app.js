@@ -1,6 +1,10 @@
 'use strict';
 var productArray = [];
 
+var productOneEl = document.getElementById('product-1');
+var productTwoEl = document.getElementById('product-2');
+var productThreeEl = document.getElementById('product-3');
+
 function Product(name, src) {
   this.name = name;
   this.src = src;
@@ -9,6 +13,20 @@ function Product(name, src) {
   productArray.push(this);
 }
 
+//randomizer
+function randomizer (max) {
+  return Math.floor(Math.random() * max); 
+}
+
+function imageGenerator() {
+  var product1 = randomizer(productArray.length);
+  var product2 = randomizer(productArray.length);
+  var product3 = randomizer(productArray.length);
+
+  productOneEl.name = productArray[product1].name;
+  productOneEl.src = productArray[product1].src;
+}
+imageGenerator();
 new Product('bag', 'assets/bag.jpg');
 new Product('banana', 'assets/banana.jpg');
 new Product('bathroom', 'assets/bathroom.jpg');
