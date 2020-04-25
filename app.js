@@ -23,10 +23,16 @@ function imageGenerator() {
   var product2 = randomizer(productArray.length);
   var product3 = randomizer(productArray.length);
 
-  productOneEl.name = productArray[product1].name;
+  productOneEl.title = productArray[product1].name;
   productOneEl.src = productArray[product1].src;
+
+  productTwoEl.title = productArray[product2].name;
+  productTwoEl.src = productArray[product2].src;
+
+  productThreeEl.title = productArray[product3].name;
+  productThreeEl.src = productArray[product3].src;
+  // imageGenerator();
 }
-imageGenerator();
 new Product('bag', 'assets/bag.jpg');
 new Product('banana', 'assets/banana.jpg');
 new Product('bathroom', 'assets/bathroom.jpg');
@@ -46,3 +52,4 @@ new Product('boots', 'assets/boots.jpg');
 // new Product('water-can', 'assets/water-can.jpg');
 // new Product('wine-glass', 'assets/wine-glass.jpg');
 
+imageGenerator();
