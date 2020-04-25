@@ -4,6 +4,7 @@ var productArray = [];
 var productOneEl = document.getElementById('product-1');
 var productTwoEl = document.getElementById('product-2');
 var productThreeEl = document.getElementById('product-3');
+var divEl = document.getElementById('product-container');
 
 function Product(name, src) {
   this.name = name;
@@ -51,5 +52,21 @@ new Product('boots', 'assets/boots.jpg');
 // // new Product('usb', 'assets/usb.jpg');
 // new Product('water-can', 'assets/water-can.jpg');
 // new Product('wine-glass', 'assets/wine-glass.jpg');
+
+
+// add an eventlister
+function handleClick(event){
+  // make a variable to store the clicked product
+  var clickedProductImage = event.target.title;
+  for (var i = 0; i < productArray.length ; i++) {
+    if (clickedProductImage === productArray[i].name) {
+      productArray[i].clicked++;
+    }
+  }
+  imageGenerator();
+}
+
+divEl.addEventListener('click', handleClick);
+//since we made the event, we just need an event listener
 
 imageGenerator();
