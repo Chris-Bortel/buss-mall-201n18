@@ -48,7 +48,7 @@ new Product('bag', 'assets/bag.jpg');
 new Product('banana', 'assets/banana.jpg');
 new Product('bathroom', 'assets/bathroom.jpg');
 new Product('boots', 'assets/boots.jpg');
-// new Product('breakfast', 'assets/breakfast.jpg');
+new Product('breakfast', 'assets/breakfast.jpg');
 // new Product('bubblegum', 'assets/bubblegum.jpg');
 // new Product('chair', 'assets/chair.jpg');
 // new Product('cthulhu', 'assets/cthulhu.jpg');
@@ -65,19 +65,23 @@ new Product('boots', 'assets/boots.jpg');
 Product.prototype.renderProductList = function () {
   var productListUlElement = document.createElement('li');
   // productListUlElement.textContent = 'ergasdfg';
-  productListUlElement.textContent = this.name , this.clicked;
+  productListUlElement.textContent = this.name + ': ' + this.clicked;
   productList.appendChild(productListUlElement);
-
 };
-for(var i = 0 ; i < productArray.length; i++) {
-  productArray[i].renderProductList();
+
+Product.prototype.renderProductListClicks = function () {
+  var productListClicksUlElement = document.createElement('li');
+  productListClicksUlElement.textContent = this.clicked;
+  productList.appendChild(productListClicksUlElement);
 }
+
+
 
 
 
 function handleClick(event){
   console.log(event);
-// make a variable to store the clicked product
+  // make a variable to store the clicked product
   var clickedProductImage = event.target.title;
   for (var i = 0; i < productArray.length ; i++) {
     if (clickedProductImage === productArray[i].name) {
@@ -88,11 +92,20 @@ function handleClick(event){
     }
     // need to add a function to track the number of clicks that the user has made.
   }
+  // console.log(productArray);
   //each time product is clicked the available click number goes down one
   clickTracker--;
 
   if(clickTracker === 0) {
+    for(i = 0 ; i < productArray.length; i++) {
+      productArray[i].renderProductList();
+    }
+    // Product.prototype.renderProductList();
+    // Product.prototype.renderProductListClicks();
+
+
     stopClicking();
+
   }
   imageGenerator();
 }
