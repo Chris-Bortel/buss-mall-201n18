@@ -67,9 +67,11 @@ Product.prototype.renderProductList = function () {
   // productListUlElement.textContent = 'ergasdfg';
   productListUlElement.textContent = this.name , this.clicked;
   productList.appendChild(productListUlElement);
+
 };
-var bagImage = new Product('bag', 'assets/bag.jpg');
-bagImage.renderProductList();
+for(var i = 0 ; i < productArray.length; i++) {
+  productArray[i].renderProductList();
+}
 
 
 
