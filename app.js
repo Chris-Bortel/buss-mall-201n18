@@ -6,12 +6,15 @@ var productTwoEl = document.getElementById('product-2');
 var productThreeEl = document.getElementById('product-3');
 var divEl = document.getElementById('product-container');
 
+var clickTracker = 3;
+
 function Product(name, src) {
   this.name = name;
   this.src = src;
-  this.click = 0;
+  this.clicked = 0;
 
   productArray.push(this);
+  // console.log(this.click);
 }
 
 //randomizer
@@ -33,6 +36,12 @@ function imageGenerator() {
   productThreeEl.title = productArray[product3].name;
   productThreeEl.src = productArray[product3].src;
   // imageGenerator();
+}
+
+function stopClicking() {
+  divEl.removeEventListener('click', handleClick);
+  divEl.textContent = '';
+  console.log('done');
 }
 new Product('bag', 'assets/bag.jpg');
 new Product('banana', 'assets/banana.jpg');
@@ -56,12 +65,20 @@ new Product('boots', 'assets/boots.jpg');
 
 // add an eventlister
 function handleClick(event){
+
   // make a variable to store the clicked product
   var clickedProductImage = event.target.title;
   for (var i = 0; i < productArray.length ; i++) {
     if (clickedProductImage === productArray[i].name) {
       productArray[i].clicked++;
     }
+    // need to add a function to track the number of clicks that the user has made.
+  }
+  //each time product is clicked the available click number goes down one
+  clickTracker--;
+
+  if(clickTracker === 0) {
+    stopClicking();
   }
   imageGenerator();
 }
