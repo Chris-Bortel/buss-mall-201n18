@@ -2,7 +2,15 @@ body {
   background-color: #bbaadd;
 };
 
- div ul li img{
-  height: 20px;
-  width: 20px;
+li{
+  display: inline;
+ }
+
+
+
+ul li img {
+  float:left;
+  max-height: 200px;
+  max-width: 200px;
 }
+      
