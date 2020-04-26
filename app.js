@@ -12,6 +12,7 @@ var clickTracker = 3;
 function Product(name, src) {
   this.name = name;
   this.src = src;
+  this.views = 0;
   this.clicked = 0;
 
   productArray.push(this);
@@ -30,12 +31,15 @@ function imageGenerator() {
 
   productOneEl.title = productArray[product1].name;
   productOneEl.src = productArray[product1].src;
+  productArray[product1].views++;
 
   productTwoEl.title = productArray[product2].name;
   productTwoEl.src = productArray[product2].src;
+  productArray[product2].views++;
 
   productThreeEl.title = productArray[product3].name;
   productThreeEl.src = productArray[product3].src;
+  productArray[product3].views++;
   // imageGenerator();
 }
 
@@ -65,7 +69,7 @@ new Product('breakfast', 'assets/breakfast.jpg');
 Product.prototype.renderProductList = function () {
   var productListUlElement = document.createElement('li');
   // productListUlElement.textContent = 'ergasdfg';
-  productListUlElement.textContent = this.name + ': ' + this.clicked;
+  productListUlElement.textContent = this.name + ': ' + this.clicked + ', and was viewed ' + this.views;
   productList.appendChild(productListUlElement);
 };
 

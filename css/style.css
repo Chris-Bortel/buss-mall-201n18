@@ -1,3 +1,8 @@
 body {
   background-color: #bbaadd;
 };
+
+ div ul li img{
+  height: 20px;
+  width: 20px;
+}
