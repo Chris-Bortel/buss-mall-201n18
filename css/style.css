@@ -10,28 +10,12 @@ body {
   margin: 0 auto;
 }
 
-/* nav ul li {
-      display: inline-block;
-    } */
 header nav {
-  /* height: 5%; */
   width: 80vw;
   margin: 0 auto;
   margin-top: 2rem;
   margin-bottom: 1rem;
   position: relative;
-}
-
-nav img{
-  /* position:absolute;
-  top: 0;
-  bottom: 4;
-  left: 0;
-  right: 0; */
-  /* padding-bottom: 20px; */
-  /* margin-top: -20px; */
-  /* margin-bottom: 0px; */
-  /* margin: 0px; */
 }
 
 nav p{
@@ -46,9 +30,6 @@ nav p{
   font-size: 30px;
 }
 
-p {
- 
-}
 main {
   height: 55vh;
   width: 100%;
@@ -60,37 +41,27 @@ main section {
   position: relative;
   width: 80vw;
   height: 65vh;
-
   margin: 0 auto;
-  /* display: inline-block; */
 }
-/* #list-container {
-  border: 2px solid black;
-  padding-top: 20px;
-  width:20%;
-  height: 91%;
-  
-} */
+
 #productList {
   border: 2px solid black;
   height: 50vh;
   width: 16vw;
   line-height: 1.6;
   font-size: 20px;
+
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 5;
-  /* margin-top: ; */
 }
 
 #product-container {
   /* border: dashed; */
   height: 50%;
   width: 80%;
-  
-
   position: absolute;
   top: 0;
   bottom: 0;
@@ -102,16 +73,12 @@ div ul {
   height: 95%;
   width: 100%;
   padding-bottom: 4%;
-  
 }
 
 div img {
   width: 33%;
   height: 99%;
-  /* margin-right: 2%; */
-  /* margin:; */
   padding-right:2%;
-  /* padding-bottom: 3%; */
 }
 
 div img:last-child {
@@ -142,8 +109,6 @@ footer {
   width: 80vw;
   height:7vw;
   margin:0 auto;
-  margin-top: rem;
-  /* margin-left: 16%; */
   font-size: 30px;
   border: 2px solid green;
 }
