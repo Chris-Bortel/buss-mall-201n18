@@ -17,18 +17,42 @@ header nav {
   height: 5%;
   width: 80%;
   margin: 0 auto;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  position: relative;
 }
 
-nav {
-  font-size: 60px;
+nav img{
+  /* position:absolute;
+  top: 0;
+  bottom: 4;
+  left: 0;
+  right: 0; */
   /* padding-bottom: 20px; */
   /* margin-top: -20px; */
   /* margin-bottom: 0px; */
   /* margin: 0px; */
 }
+
+nav p{
+  position:absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 20%;
+  height:50%;
+  margin-left: 16%;
+  font-size: 30px;
+}
+
+p {
+ 
+}
 main {
   height: 55%;
   width: 100%;
+  margin-top:60px;
   margin: 0 auto;
 }
 
@@ -40,14 +64,22 @@ main section {
   margin: 0 auto;
   /* display: inline-block; */
 }
+/* #list-container {
+  border: 2px solid black;
+  padding-top: 20px;
+  width:20%;
+  height: 91%;
+  
+} */
 #productList {
-  height: 95%;
+  height: 91%;
   width: 20%;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 5;
+  /* margin-top: ; */
 }
 
 #product-container {
@@ -90,4 +122,9 @@ article {
   bottom: 0;
   left: 5;
   right: 0;
+}
+
+article p {
+  margin: 2% .75% 2% 2%;
+  line-height: 1.6;
 }
