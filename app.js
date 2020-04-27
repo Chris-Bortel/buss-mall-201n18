@@ -77,8 +77,7 @@ Product.prototype.renderProductListClicks = function () {
   var productListClicksUlElement = document.createElement('li');
   productListClicksUlElement.textContent = this.clicked;
   productList.appendChild(productListClicksUlElement);
-}
-
+};
 
 
 

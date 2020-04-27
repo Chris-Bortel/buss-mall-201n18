@@ -1,22 +1,95 @@
+
+* {
+  outline: 1px dotted red;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #bbaadd;
+  height: 1900px;
+  width: 100%;
+  margin: 0 auto;
 };
 
 
 
-div {
-  display: inline-block;
+    /* nav ul li {
+      display: inline-block;
+    } */
+
+nav {
+font-size: 60px;;
+/* padding-bottom: 20px; */
+/* margin-top: -20px; */
+/* margin-bottom: 0px; */
+/* margin: 0px; */
+}
+main {
+  height: 55%;
+  width: 100%;
+  margin: 0 auto;
 }
 
-div ul li {
-  display: inline-block;
-  max-height: 200px;
-  max-width: 200px;
+main section{
+  position: relative;
+  width:80%;
+  height:80%;
+  
+  margin: 0 auto;
+  /* display: inline-block; */
+
+}
+#productList {
+  height:95%;
+  width: 20%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 5;
+
+}
+
+#product-container {
   border: dashed;
+  height: 45%;
+  width: 75%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5;
+  right: 0;
 }
 
-div ul li img {
-  max-width: 100%;
-  max-height: 100%;
+div ul {
+  height:90%;
+  width:100%;
 }
+
+div img {
+  width: 28%;
+  height: 97%;
+  margin-right: 2%;
+  /* margin:; */
+  padding: 2%;
+  padding-bottom: 3%;
+}
+
+div img:last-child {
+  margin-right: 0rem
+}
+
+article {
+  border: 2px dotted yellow;
+  width: 75%;
+  height: 35%;
+  position: absolute;
+  top: 5;
+  bottom: 0;
+  left: 5;
+  right: 0;
+}
+
+
+
       
