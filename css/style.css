@@ -31,7 +31,7 @@ nav p{
 }
 
 main {
-  height: 55vh;
+  height: 60vh;
   width: 100%;
   margin-top:60px;
   margin: 0 auto;
@@ -40,13 +40,13 @@ main {
 main section {
   position: relative;
   width: 80vw;
-  height: 65vh;
+  height: 70vh;
   margin: 0 auto;
 }
 
 #productList {
   border: 2px solid black;
-  height: 50vh;
+  height: 55vh ;
   width: 16vw;
   line-height: 1.6;
   font-size: 20px;
@@ -60,7 +60,7 @@ main section {
 
 #product-container {
   /* border: dashed; */
-  height: 50%;
+  height: 53%;
   width: 80%;
   position: absolute;
   top: 0;
@@ -107,7 +107,7 @@ article p {
 
 footer {
   width: 80vw;
-  height:7vw;
+  height:7vh;
   margin:0 auto;
   font-size: 30px;
   border: 2px solid green;
