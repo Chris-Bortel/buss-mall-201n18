@@ -1,4 +1,3 @@
-
 * {
   outline: 1px dotted red;
   box-sizing: border-box;
@@ -9,20 +8,23 @@ body {
   height: 1900px;
   width: 100%;
   margin: 0 auto;
-};
+}
 
-
-
-    /* nav ul li {
+/* nav ul li {
       display: inline-block;
     } */
+header nav {
+  height: 5%;
+  width: 80%;
+  margin: 0 auto;
+}
 
 nav {
-font-size: 60px;;
-/* padding-bottom: 20px; */
-/* margin-top: -20px; */
-/* margin-bottom: 0px; */
-/* margin: 0px; */
+  font-size: 60px;
+  /* padding-bottom: 20px; */
+  /* margin-top: -20px; */
+  /* margin-bottom: 0px; */
+  /* margin: 0px; */
 }
 main {
   height: 55%;
@@ -30,29 +32,27 @@ main {
   margin: 0 auto;
 }
 
-main section{
+main section {
   position: relative;
-  width:80%;
-  height:80%;
-  
+  width: 80%;
+  height: 75%;
+
   margin: 0 auto;
   /* display: inline-block; */
-
 }
 #productList {
-  height:95%;
+  height: 95%;
   width: 20%;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 5;
-
 }
 
 #product-container {
   border: dashed;
-  height: 45%;
+  height: 50%;
   width: 75%;
   position: absolute;
   top: 0;
@@ -62,34 +62,32 @@ main section{
 }
 
 div ul {
-  height:90%;
-  width:100%;
+  height: 90%;
+  width: 100%;
+  padding-bottom: 4%;
 }
 
 div img {
-  width: 28%;
-  height: 97%;
-  margin-right: 2%;
+  width: 32%;
+  height: 98%;
+  /* margin-right: 2%; */
   /* margin:; */
-  padding: 2%;
-  padding-bottom: 3%;
+  padding-right: 2%;
+  /* padding-bottom: 3%; */
 }
 
 div img:last-child {
-  margin-right: 0rem
+  margin-right: 0rem;
 }
 
 article {
   border: 2px dotted yellow;
   width: 75%;
   height: 35%;
+  margin-bottom: 4%;
   position: absolute;
   top: 5;
   bottom: 0;
   left: 5;
   right: 0;
 }
-
-
-
-      
