@@ -11,7 +11,7 @@ var productList = document.getElementById('productList');
 var clickTracker = 10;
 var uniqueSixArray = [];
 var unique = 6;
-
+// notes
 function Product(title, src) {
   // TODO: add clicked = 0 and views = 0
   this.productTitle = title;
