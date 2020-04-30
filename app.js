@@ -7,7 +7,7 @@ var productThreeEl = document.getElementById('product-3');
 var divEl = document.getElementById('product-container');
 var productList = document.getElementById('productList');
 
-var clickTracker = 5;
+var clickTracker = 25;
 
 function Product(title, src) {
   // add clicked = 0 and views = 0
