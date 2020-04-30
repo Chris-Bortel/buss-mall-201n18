@@ -1,14 +1,16 @@
 'use strict';
 var productArray = [];
-// var uniqueSixArray = [];
 
-var productOneEl = document.getElementById('product-1');
-var productTwoEl = document.getElementById('product-2');
-var productThreeEl = document.getElementById('product-3');
+
+// var productOneEl = document.getElementById('product-1');
+// var productTwoEl = document.getElementById('product-2');
+// var productThreeEl = document.getElementById('product-3');
 var divEl = document.getElementById('product-container');
 var productList = document.getElementById('productList');
 
 var clickTracker = 10;
+var uniqueSixArray = [];
+var unique = 6;
 
 function Product(title, src) {
   // TODO: add clicked = 0 and views = 0
@@ -21,13 +23,24 @@ function Product(title, src) {
   productArray.push(this);
   // console.log(this.click);
 }
+console.log(uniqueSixArray);
 
 //randomizer
-function randomizer (max) {
+Product.prototype.randomizer = function (max) {
   return Math.floor(Math.random() * max);
-}
+};
 //make six unique numbers out of an array
-
+Product.prototype.uniqueSix = function () {
+  if (this.uniqueSixArray.length < unique) {
+    for (var i = 0 ; i < productArray.length ; i++) {
+    //first create the six
+      var oneProductOfSix = this.randomizer();
+      uniqueSixArray.push(Math.floor(oneProductOfSix));
+      //then do the pop
+    }
+    this.uniqueSix();
+  }
+};
 // use pop method to pop the last three off the back and assign those to prod1 prod2 prod3 variables
 //// these three are rendered to the screen.
 // then, randomizer pushes three unique numbers to the front of uniqueSixArray
@@ -40,31 +53,31 @@ function randomizer (max) {
 //
 
 
-function imageGenerator() {
-//TODO: in order to make this have no repeats, use a do while
-  do {
-    var product1 = randomizer(productArray.length);
-    var product2 = randomizer(productArray.length);
-    var product3 = randomizer(productArray.length);
-  } while
-  ((product1 === product2) || (product2 === product1) || (product3 === product2) || (product3 === product1));
+// function imageGenerator() {
+// //TODO: in order to make this have no repeats, use a do while
+//   do {
+//     var product1 = this.randomizer(productArray.length);
+//     var product2 = this.randomizer(productArray.length);
+//     var product3 = this.randomizer(productArray.length);
+//   } while
+//   ((product1 === product2) || (product2 === product1) || (product3 === product2) || (product3 === product1));
 
-  productOneEl.title = productArray[product1].productTitle;
-  productOneEl.src = productArray[product1].productSrc;
-  productOneEl.alt = productArray[product1].productAlt;
-  productArray[product1].views++;
+//   productOneEl.title = productArray[product1].productTitle;
+//   productOneEl.src = productArray[product1].productSrc;
+//   productOneEl.alt = productArray[product1].productAlt;
+//   productArray[product1].views++;
 
-  productTwoEl.title = productArray[product2].productTitle;
-  productTwoEl.src = productArray[product2].productSrc;
-  productTwoEl.alt = productArray[product2].productAlt;
-  productArray[product2].views++;
+//   productTwoEl.title = productArray[product2].productTitle;
+//   productTwoEl.src = productArray[product2].productSrc;
+//   productTwoEl.alt = productArray[product2].productAlt;
+//   productArray[product2].views++;
 
-  productThreeEl.title = productArray[product3].productTitle;
-  productThreeEl.src = productArray[product3].productSrc;
-  productThreeEl.alt = productArray[product3].productalt;
-  productArray[product3].views++;
-  // imageGenerator();
-}
+//   productThreeEl.title = productArray[product3].productTitle;
+//   productThreeEl.src = productArray[product3].productSrc;
+//   productThreeEl.alt = productArray[product3].productalt;
+//   productArray[product3].views++;
+//   // imageGenerator();
+// }
 
 function stopClicking() {
   divEl.removeEventListener('click', handleClick);
@@ -127,9 +140,9 @@ function handleClick(event){
     stopClicking();
 
   }
-  imageGenerator();
+  // imageGenerator();
 }
 
 divEl.addEventListener('click', handleClick);
 
-imageGenerator();
+// imageGenerator();
