@@ -1,5 +1,6 @@
 'use strict';
 var productArray = [];
+// var uniqueSixArray = [];
 
 var productOneEl = document.getElementById('product-1');
 var productTwoEl = document.getElementById('product-2');
@@ -7,7 +8,7 @@ var productThreeEl = document.getElementById('product-3');
 var divEl = document.getElementById('product-container');
 var productList = document.getElementById('productList');
 
-var clickTracker = 4;
+var clickTracker = 10;
 
 function Product(title, src) {
   // TODO: add clicked = 0 and views = 0
@@ -25,6 +26,19 @@ function Product(title, src) {
 function randomizer (max) {
   return Math.floor(Math.random() * max);
 }
+//make six unique numbers out of an array
+
+// use pop method to pop the last three off the back and assign those to prod1 prod2 prod3 variables
+//// these three are rendered to the screen.
+// then, randomizer pushes three unique numbers to the front of uniqueSixArray
+
+//come up with way to keep this populated
+//// a while loop inside of a while loop
+
+// use push method to add the remaining three to the
+//  write a function to compare three old ones to three new ones
+//
+
 
 function imageGenerator() {
 //TODO: in order to make this have no repeats, use a do while
