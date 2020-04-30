@@ -26,21 +26,23 @@ function Product(title, src) {
 console.log(uniqueSixArray);
 
 //randomizer
-Product.prototype.randomizer = function (max) {
-  return Math.floor(Math.random() * max);
-};
+function randomizer () {
+  return Math.floor(Math.random() * productArray.length);
+}
 //make six unique numbers out of an array
-Product.prototype.uniqueSix = function () {
-  if (this.uniqueSixArray.length < unique) {
-    for (var i = 0 ; i < productArray.length ; i++) {
+function uniqueSix () {
+  
+  for( var i = 0 ; i < unique ; i++) {
+    var oneProductOfSix = randomizer();
     //first create the six
-      var oneProductOfSix = this.randomizer();
-      uniqueSixArray.push(Math.floor(oneProductOfSix));
-      //then do the pop
-    }
-    this.uniqueSix();
+    //then do the pop
+    uniqueSixArray.push(Math.floor(oneProductOfSix));
   }
-};
+  // do {
+   
+  // } while (oneProductOfSix === uniqueSixArray[i]);
+}
+
 // use pop method to pop the last three off the back and assign those to prod1 prod2 prod3 variables
 //// these three are rendered to the screen.
 // then, randomizer pushes three unique numbers to the front of uniqueSixArray
@@ -56,9 +58,9 @@ Product.prototype.uniqueSix = function () {
 // function imageGenerator() {
 // //TODO: in order to make this have no repeats, use a do while
 //   do {
-//     var product1 = this.randomizer(productArray.length);
-//     var product2 = this.randomizer(productArray.length);
-//     var product3 = this.randomizer(productArray.length);
+// var product1 = this.randomizer(productArray.length);
+// var product2 = this.randomizer(productArray.length);
+// var product3 = this.randomizer(productArray.length);
 //   } while
 //   ((product1 === product2) || (product2 === product1) || (product3 === product2) || (product3 === product1));
 
@@ -88,17 +90,16 @@ new Product('bag', 'assets/bag.jpg');
 new Product('banana', 'assets/banana.jpg');
 new Product('bathroom', 'assets/bathroom.jpg');
 new Product('boots', 'assets/boots.jpg');
-// new Product('breakfast', 'assets/breakfast.jpg');
-// new Product('bubblegum', 'assets/bubblegum.jpg');
-// new Product('chair', 'assets/chair.jpg');
-// new Product('cthulhu', 'assets/cthulhu.jpg');
+new Product('breakfast', 'assets/breakfast.jpg');
+new Product('bubblegum', 'assets/bubblegum.jpg');
+new Product('chair', 'assets/chair.jpg');
+new Product('cthulhu', 'assets/cthulhu.jpg');
 // new Product('dog-duck', 'assets/dog-duck.jpg');
 // new Product('scissors', 'assets/scissors.jpg');
 // new Product('shark', 'assets/shark.jpg');
 // new Product('pet-sweep', 'assets/sweep.jpg');
 // new Product('tauntaun', 'assets/tauntaun.jpg');
 // new Product('unicorn', 'assets/unicorn.jpg');
-// // new Product('unicorn', 'assets/unicorn.jpg');
 // new Product('usb', 'assets/usb.gif');
 // new Product('water-can', 'assets/water-can.jpg');
 // new Product('wine-glass', 'assets/wine-glass.jpg');
