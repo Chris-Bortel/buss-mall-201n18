@@ -30,7 +30,7 @@ function randomizer (max) {
   return Math.floor(Math.random() * max);
 }
 console.log(randomizer)
-//make six unique numbers out of an array
+// make six unique numbers out of an array
 // function uniqueArrayGenerator () {
 //   while (Product.uniqueArray.length < unique) {
 //     console.log(Product.uniqueArray.length);
@@ -71,10 +71,14 @@ console.log(randomizer)
 function imageGenerator() {
 // //TODO: in order to make this have no repeats, use a do while
   do {
-    var product1 = this.randomizer(productArray.length);
-    var product2 = this.randomizer(productArray.length);
-    var product3 = this.randomizer(productArray.length);
+    var product1 = randomizer(productArray.length);
+    console.log(product1);
+    var product2 = randomizer(productArray.length);
+    console.log(product2);
+    var product3 = randomizer(productArray.length);
+    console.log(product3);
   } while
+  
   ((product1 === product2) || (product2 === product1) || (product3 === product2) || (product3 === product1));
 
   productOneEl.title = productArray[product1].productTitle;
@@ -91,7 +95,7 @@ function imageGenerator() {
   productThreeEl.src = productArray[product3].productSrc;
   productThreeEl.alt = productArray[product3].productalt;
   productArray[product3].views++;
-  imageGenerator();
+  // imageGenerator();
 }
 
 function stopClicking() {
