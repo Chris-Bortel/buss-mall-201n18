@@ -8,7 +8,7 @@ var productThreeEl = document.getElementById('product-3');
 var divEl = document.getElementById('product-container');
 var productList = document.getElementById('productList');
 
-var clickTracker = 10;
+var clickTracker = 5;
 // var uniqueArray = [];
 // var unique = 6;
 // notes
@@ -29,7 +29,7 @@ function Product(title, src) {
 function randomizer (max) {
   return Math.floor(Math.random() * max);
 }
-console.log(randomizer)
+console.log(randomizer);
 // make six unique numbers out of an array
 // function uniqueArrayGenerator () {
 //   while (Product.uniqueArray.length < unique) {
@@ -67,7 +67,6 @@ console.log(randomizer)
 //  write a function to compare three old ones to three new ones
 //
 
-
 function imageGenerator() {
 // //TODO: in order to make this have no repeats, use a do while
   do {
@@ -98,11 +97,86 @@ function imageGenerator() {
   // imageGenerator();
 }
 
+function seedChartData() {
+  var clickedArray = [];
+  var labelArray = [];
+  var viewedArray = [];
+  console.log(viewedArray);
+  for (var i = 0; i < productArray.length; i++) {
+    clickedArray.push(productArray[i].clicked);
+    labelArray.push(productArray[i].productTitle);
+    viewedArray.push(productArray[i].views);
+  }
+  return [clickedArray, labelArray, viewedArray];
+}
+
 function stopClicking() {
   divEl.removeEventListener('click', handleClick);
   divEl.textContent = '';
   // console.log('done');
 }
+function renderChart() {
+  var ctx = document.getElementById('myChart');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: seedChartData()[1],
+      datasets: [{
+        label: '# of Votes',
+        data: seedChartData()[0],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      },
+      {
+        label: '# of Views',
+        data: seedChartData()[2],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
+
+
 new Product('bag', 'assets/bag.jpg');
 new Product('banana', 'assets/banana.jpg');
 new Product('bathroom', 'assets/bathroom.jpg');
@@ -145,7 +219,6 @@ function handleClick(event){
       productArray[i].clicked++;
       console.log('After',productArray[i].clicked);
     }
-    // need to add a function to track the number of clicks that the user has made.
   }
   // console.log(productArray);
   clickTracker--;
@@ -157,11 +230,11 @@ function handleClick(event){
 
 
     stopClicking();
-
+    renderChart();
   }
   imageGenerator();
 }
 
 divEl.addEventListener('click', handleClick);
 
-// imageGenerator();
+imageGenerator();
