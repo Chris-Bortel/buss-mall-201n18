@@ -115,6 +115,8 @@ function stopClicking() {
   divEl.textContent = '';
   // console.log('done');
 }
+
+//TODO: build a function that generates colors for each item on the chart
 function renderChart() {
   var ctx = document.getElementById('myChart');
   var myChart = new Chart(ctx, {
