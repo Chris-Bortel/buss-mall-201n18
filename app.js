@@ -67,6 +67,47 @@ console.log(randomizer);
 //  write a function to compare three old ones to three new ones
 //
 
+// save to local storage
+
+
+function saveLocalStorage(){
+  var savedProducts = JSON.stringify(productArray);
+  localStorage.setItem('stored products', savedProducts);
+}
+
+function loadLocalStorage(){
+  //check to see if there's stuff in local storage. if there is, thne we grab it and use that data
+  //if local storage is empty, poceed as if it is the first time
+  if(localStorage.getItem('stored products')){
+    var localStorageProducts = JSON.parse(localStorage.getItem('stored products'));
+    for(var i = 0; i < localStorageProducts.length; i++){
+      new Product(localStorageProducts[i].title, localStorageProducts[i].src,localStorageProducts[i].clicked, localStorageProducts[i].views);
+    }
+  }
+  else{
+    new Product('bag', 'assets/bag.jpg');
+    new Product('banana', 'assets/banana.jpg');
+    new Product('bathroom', 'assets/bathroom.jpg');
+    new Product('boots', 'assets/boots.jpg');
+    new Product('breakfast', 'assets/breakfast.jpg');
+    new Product('bubblegum', 'assets/bubblegum.jpg');
+    new Product('chair', 'assets/chair.jpg');
+    new Product('cthulhu', 'assets/cthulhu.jpg');
+    new Product('dog-duck', 'assets/dog-duck.jpg');
+    // new Product('scissors', 'assets/scissors.jpg');
+    // new Product('shark', 'assets/shark.jpg');
+    // new Product('pet-sweep', 'assets/sweep.jpg');
+    // new Product('tauntaun', 'assets/tauntaun.jpg');
+    // new Product('unicorn', 'assets/unicorn.jpg');
+    // // new Product('unicorn', 'assets/unicorn.jpg');
+    // new Product('usb', 'assets/usb.gif');
+    // new Product('water-can', 'assets/water-can.jpg');
+    // new Product('wine-glass', 'assets/wine-glass.jpg');
+
+  }
+  imageGenerator();
+}
+
 function imageGenerator() {
 // //TODO: in order to make this have no repeats, use a do while
   do {
@@ -94,7 +135,6 @@ function imageGenerator() {
   productThreeEl.src = productArray[product3].productSrc;
   productThreeEl.alt = productArray[product3].productalt;
   productArray[product3].views++;
-  // imageGenerator();
 }
 
 function seedChartData() {
@@ -179,24 +219,6 @@ function renderChart() {
 }
 
 
-new Product('bag', 'assets/bag.jpg');
-new Product('banana', 'assets/banana.jpg');
-new Product('bathroom', 'assets/bathroom.jpg');
-new Product('boots', 'assets/boots.jpg');
-new Product('breakfast', 'assets/breakfast.jpg');
-new Product('bubblegum', 'assets/bubblegum.jpg');
-new Product('chair', 'assets/chair.jpg');
-new Product('cthulhu', 'assets/cthulhu.jpg');
-new Product('dog-duck', 'assets/dog-duck.jpg');
-// new Product('scissors', 'assets/scissors.jpg');
-// new Product('shark', 'assets/shark.jpg');
-// new Product('pet-sweep', 'assets/sweep.jpg');
-// new Product('tauntaun', 'assets/tauntaun.jpg');
-// new Product('unicorn', 'assets/unicorn.jpg');
-// // new Product('unicorn', 'assets/unicorn.jpg');
-// new Product('usb', 'assets/usb.gif');
-// new Product('water-can', 'assets/water-can.jpg');
-// new Product('wine-glass', 'assets/wine-glass.jpg');
 Product.prototype.renderProductList = function () {
   var productListUlElement = document.createElement('li');
   // productListUlElement.textContent = 'ergasdfg';
@@ -232,6 +254,7 @@ function handleClick(event){
 
 
     stopClicking();
+    saveLocalStorage();
     renderChart();
   }
   imageGenerator();
@@ -239,4 +262,4 @@ function handleClick(event){
 
 divEl.addEventListener('click', handleClick);
 
-imageGenerator();
+loadLocalStorage();
