@@ -12,13 +12,13 @@ var clickTracker = 5;
 // var uniqueArray = [];
 // var unique = 6;
 // notes
-function Product(title, src, views=0, clicked=0 ) {
+function Product(title, src, clicked=0, views=0) {
   // TODO: add clicked = 0 and views = 0
   this.productTitle = title;
   this.productSrc = src;
   this.productAlt = title;
-  this.views = views;
   this.clicked = clicked;
+  this.views = views;
 
   productArray.push(this);
   // console.log(this.click);
@@ -72,18 +72,20 @@ console.log(randomizer);
 
 function saveLocalStorage(){
   var savedProducts = JSON.stringify(productArray);
-  localStorage.setItem('storedProducts', savedProducts);
+  localStorage.setItem('storedproducts', savedProducts);
 }
 
 function loadLocalStorage(){
   //check to see if there's stuff in local storage. if there is, thne we grab it and use that data
   //if local storage is empty, poceed as if it is the first time
-  if(localStorage.getItem('storedProducts')){
-    var localStorageProducts = JSON.parse(localStorage.getItem('storedProducts'));
+  if(localStorage.getItem('storedproducts')){
+    var localStorageProducts = JSON.parse(localStorage.getItem('storedproducts'));
+    console.log(localStorageProducts);
     for(var i = 0; i < localStorageProducts.length; i++){
-      new Product(localStorageProducts[i].title, localStorageProducts[i].src,localStorageProducts[i].clicked, localStorageProducts[i].views);
+      new Product(localStorageProducts[i].productTitle, localStorageProducts[i].productSrc, localStorageProducts[i].clicked, localStorageProducts[i].views);
     }
   }
+  
   else{
     new Product('bag', 'assets/bag.jpg');
     new Product('banana', 'assets/banana.jpg');
