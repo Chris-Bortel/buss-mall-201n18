@@ -31,29 +31,14 @@ function randomizer (max) {
 }
 console.log(randomizer);
 // make six unique numbers out of an array
-// function uniqueArrayGenerator () {
-//   while (Product.uniqueArray.length < unique) {
-//     console.log(Product.uniqueArray.length);
-//     var random = randomizer();
 
-//     while(!Product.uniqueArray.includes(random)) {
-//       Product.uniqueArray.push(random);
-//     }
-//   }
-// }
-// uniqueArrayGenerator();
-// for( var i = 0 ; i < unique ; i++) {
-//   uniqueSixArray.push(Math.floor(oneProductOfSix));
-//   for(var i = 0 ; i < )
-//   do {
-//     oneProductOfSix = randomizer();
-//   } while (oneProductOfSix === uniqueSixArray[i]);
+
 
 
 //   //first create the six
 //   //then do the pop
 
-// }
+
 
 
 // use pop method to pop the last three off the back and assign those to prod1 prod2 prod3 variables
@@ -85,7 +70,7 @@ function loadLocalStorage(){
       new Product(localStorageProducts[i].productTitle, localStorageProducts[i].productSrc, localStorageProducts[i].clicked, localStorageProducts[i].views);
     }
   }
-  
+
   else{
     new Product('bag', 'assets/bag.jpg');
     new Product('banana', 'assets/banana.jpg');
@@ -120,8 +105,10 @@ function imageGenerator() {
     var product3 = randomizer(productArray.length);
     console.log(product3);
   } while
-  
-  ((product1 === product2) || (product2 === product1) || (product3 === product2) || (product3 === product1));
+  //look into using includes
+  // want to see if these products were recently used 
+  // declare array of viewed products
+  ((product1 === product2) || (product3 === product2) || (product3 === product1));
 
   productOneEl.title = productArray[product1].productTitle;
   productOneEl.src = productArray[product1].productSrc;
