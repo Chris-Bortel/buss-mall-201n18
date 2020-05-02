@@ -12,13 +12,13 @@ var clickTracker = 5;
 // var uniqueArray = [];
 // var unique = 6;
 // notes
-function Product(title, src) {
+function Product(title, src, clicked=0, views=0) {
   // TODO: add clicked = 0 and views = 0
   this.productTitle = title;
   this.productSrc = src;
   this.productAlt = title;
-  this.views = 0;
-  this.clicked = 0;
+  this.clicked = clicked;
+  this.views = views;
 
   productArray.push(this);
   // console.log(this.click);
@@ -31,29 +31,14 @@ function randomizer (max) {
 }
 console.log(randomizer);
 // make six unique numbers out of an array
-// function uniqueArrayGenerator () {
-//   while (Product.uniqueArray.length < unique) {
-//     console.log(Product.uniqueArray.length);
-//     var random = randomizer();
 
-//     while(!Product.uniqueArray.includes(random)) {
-//       Product.uniqueArray.push(random);
-//     }
-//   }
-// }
-// uniqueArrayGenerator();
-// for( var i = 0 ; i < unique ; i++) {
-//   uniqueSixArray.push(Math.floor(oneProductOfSix));
-//   for(var i = 0 ; i < )
-//   do {
-//     oneProductOfSix = randomizer();
-//   } while (oneProductOfSix === uniqueSixArray[i]);
+
 
 
 //   //first create the six
 //   //then do the pop
 
-// }
+
 
 
 // use pop method to pop the last three off the back and assign those to prod1 prod2 prod3 variables
@@ -67,6 +52,49 @@ console.log(randomizer);
 //  write a function to compare three old ones to three new ones
 //
 
+// save to local storage
+
+
+function saveLocalStorage(){
+  var savedProducts = JSON.stringify(productArray);
+  localStorage.setItem('storedproducts', savedProducts);
+}
+
+function loadLocalStorage(){
+  //check to see if there's stuff in local storage. if there is, thne we grab it and use that data
+  //if local storage is empty, poceed as if it is the first time
+  if(localStorage.getItem('storedproducts')){
+    var localStorageProducts = JSON.parse(localStorage.getItem('storedproducts'));
+    console.log(localStorageProducts);
+    for(var i = 0; i < localStorageProducts.length; i++){
+      new Product(localStorageProducts[i].productTitle, localStorageProducts[i].productSrc, localStorageProducts[i].clicked, localStorageProducts[i].views);
+    }
+  }
+
+  else{
+    new Product('bag', 'assets/bag.jpg');
+    new Product('banana', 'assets/banana.jpg');
+    new Product('bathroom', 'assets/bathroom.jpg');
+    new Product('boots', 'assets/boots.jpg');
+    new Product('breakfast', 'assets/breakfast.jpg');
+    new Product('bubblegum', 'assets/bubblegum.jpg');
+    new Product('chair', 'assets/chair.jpg');
+    new Product('cthulhu', 'assets/cthulhu.jpg');
+    new Product('dog-duck', 'assets/dog-duck.jpg');
+    // new Product('scissors', 'assets/scissors.jpg');
+    // new Product('shark', 'assets/shark.jpg');
+    // new Product('pet-sweep', 'assets/sweep.jpg');
+    // new Product('tauntaun', 'assets/tauntaun.jpg');
+    // new Product('unicorn', 'assets/unicorn.jpg');
+    // // new Product('unicorn', 'assets/unicorn.jpg');
+    // new Product('usb', 'assets/usb.gif');
+    // new Product('water-can', 'assets/water-can.jpg');
+    // new Product('wine-glass', 'assets/wine-glass.jpg');
+
+  }
+  imageGenerator();
+}
+
 function imageGenerator() {
 // //TODO: in order to make this have no repeats, use a do while
   do {
@@ -77,8 +105,10 @@ function imageGenerator() {
     var product3 = randomizer(productArray.length);
     console.log(product3);
   } while
-  
-  ((product1 === product2) || (product2 === product1) || (product3 === product2) || (product3 === product1));
+  //look into using includes
+  // want to see if these products were recently used 
+  // declare array of viewed products
+  ((product1 === product2) || (product3 === product2) || (product3 === product1));
 
   productOneEl.title = productArray[product1].productTitle;
   productOneEl.src = productArray[product1].productSrc;
@@ -94,7 +124,6 @@ function imageGenerator() {
   productThreeEl.src = productArray[product3].productSrc;
   productThreeEl.alt = productArray[product3].productalt;
   productArray[product3].views++;
-  // imageGenerator();
 }
 
 function seedChartData() {
@@ -179,24 +208,6 @@ function renderChart() {
 }
 
 
-new Product('bag', 'assets/bag.jpg');
-new Product('banana', 'assets/banana.jpg');
-new Product('bathroom', 'assets/bathroom.jpg');
-new Product('boots', 'assets/boots.jpg');
-new Product('breakfast', 'assets/breakfast.jpg');
-new Product('bubblegum', 'assets/bubblegum.jpg');
-new Product('chair', 'assets/chair.jpg');
-new Product('cthulhu', 'assets/cthulhu.jpg');
-new Product('dog-duck', 'assets/dog-duck.jpg');
-// new Product('scissors', 'assets/scissors.jpg');
-// new Product('shark', 'assets/shark.jpg');
-// new Product('pet-sweep', 'assets/sweep.jpg');
-// new Product('tauntaun', 'assets/tauntaun.jpg');
-// new Product('unicorn', 'assets/unicorn.jpg');
-// // new Product('unicorn', 'assets/unicorn.jpg');
-// new Product('usb', 'assets/usb.gif');
-// new Product('water-can', 'assets/water-can.jpg');
-// new Product('wine-glass', 'assets/wine-glass.jpg');
 Product.prototype.renderProductList = function () {
   var productListUlElement = document.createElement('li');
   // productListUlElement.textContent = 'ergasdfg';
@@ -232,6 +243,7 @@ function handleClick(event){
 
 
     stopClicking();
+    saveLocalStorage();
     renderChart();
   }
   imageGenerator();
@@ -239,4 +251,4 @@ function handleClick(event){
 
 divEl.addEventListener('click', handleClick);
 
-imageGenerator();
+loadLocalStorage();
