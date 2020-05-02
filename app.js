@@ -12,13 +12,13 @@ var clickTracker = 5;
 // var uniqueArray = [];
 // var unique = 6;
 // notes
-function Product(title, src) {
+function Product(title, src, views=0, clicked=0 ) {
   // TODO: add clicked = 0 and views = 0
   this.productTitle = title;
   this.productSrc = src;
   this.productAlt = title;
-  this.views = 0;
-  this.clicked = 0;
+  this.views = views;
+  this.clicked = clicked;
 
   productArray.push(this);
   // console.log(this.click);
@@ -72,14 +72,14 @@ console.log(randomizer);
 
 function saveLocalStorage(){
   var savedProducts = JSON.stringify(productArray);
-  localStorage.setItem('stored products', savedProducts);
+  localStorage.setItem('storedProducts', savedProducts);
 }
 
 function loadLocalStorage(){
   //check to see if there's stuff in local storage. if there is, thne we grab it and use that data
   //if local storage is empty, poceed as if it is the first time
-  if(localStorage.getItem('stored products')){
-    var localStorageProducts = JSON.parse(localStorage.getItem('stored products'));
+  if(localStorage.getItem('storedProducts')){
+    var localStorageProducts = JSON.parse(localStorage.getItem('storedProducts'));
     for(var i = 0; i < localStorageProducts.length; i++){
       new Product(localStorageProducts[i].title, localStorageProducts[i].src,localStorageProducts[i].clicked, localStorageProducts[i].views);
     }
