@@ -1,19 +1,18 @@
-'use strict';
+"use strict";
 var productArray = [];
 var randomArray = [];
 
-
-var productOneEl = document.getElementById('product-1');
-var productTwoEl = document.getElementById('product-2');
-var productThreeEl = document.getElementById('product-3');
-var divEl = document.getElementById('product-container');
-var productList = document.getElementById('productList');
+var productOneEl = document.getElementById("product-1");
+var productTwoEl = document.getElementById("product-2");
+var productThreeEl = document.getElementById("product-3");
+var divEl = document.getElementById("product-container");
+var productList = document.getElementById("productList");
 
 var clickTracker = 5;
 // var uniqueArray = [];
 // var unique = 6;
 // notes
-function Product(title, src, clicked=0, views=0) {
+function Product(title, src, clicked = 0, views = 0) {
   // TODO: add clicked = 0 and views = 0
   this.productTitle = title;
   this.productSrc = src;
@@ -27,24 +26,28 @@ function Product(title, src, clicked=0, views=0) {
 // console.log(uniqueArray);
 
 //randomizer
-function randomizer (max) {
+function randomizer(max) {
   return Math.floor(Math.random() * max);
   // return Math.floor(Math.random() * 20);
 }
 console.log(randomizer);
 // make six unique numbers out of an array
-function fillArray ()
+function fillArray() {
+  while (randomArray.length < 6) {
+    var tempRandomNumber = randomizer();
+    if (randomArray.includes(tempRandomNumber)) {
+      console.log("repeat, repeat");
+    } else {
+      randomArray.push(tempRandomNumber);
+    }
+  }
+}
 
 // while loop is less than SVGMatrix, run randome Array
 // if (.includes)
 
-
-
 //   //first create the six
 //   //then do the pop
-
-
-
 
 // use pop method to pop the last three off the back and assign those to prod1 prod2 prod3 variables
 //// these three are rendered to the screen.
@@ -59,33 +62,37 @@ function fillArray ()
 
 // save to local storage
 
-
-function saveLocalStorage(){
+function saveLocalStorage() {
   var savedProducts = JSON.stringify(productArray);
-  localStorage.setItem('storedproducts', savedProducts);
+  localStorage.setItem("storedproducts", savedProducts);
 }
 
-function loadLocalStorage(){
+function loadLocalStorage() {
   //check to see if there's stuff in local storage. if there is, thne we grab it and use that data
   //if local storage is empty, poceed as if it is the first time
-  if(localStorage.getItem('storedproducts')){
-    var localStorageProducts = JSON.parse(localStorage.getItem('storedproducts'));
+  if (localStorage.getItem("storedproducts")) {
+    var localStorageProducts = JSON.parse(
+      localStorage.getItem("storedproducts")
+    );
     console.log(localStorageProducts);
-    for(var i = 0; i < localStorageProducts.length; i++){
-      new Product(localStorageProducts[i].productTitle, localStorageProducts[i].productSrc, localStorageProducts[i].clicked, localStorageProducts[i].views);
+    for (var i = 0; i < localStorageProducts.length; i++) {
+      new Product(
+        localStorageProducts[i].productTitle,
+        localStorageProducts[i].productSrc,
+        localStorageProducts[i].clicked,
+        localStorageProducts[i].views
+      );
     }
-  }
-
-  else{
-    new Product('bag', 'assets/bag.jpg');
-    new Product('banana', 'assets/banana.jpg');
-    new Product('bathroom', 'assets/bathroom.jpg');
-    new Product('boots', 'assets/boots.jpg');
-    new Product('breakfast', 'assets/breakfast.jpg');
-    new Product('bubblegum', 'assets/bubblegum.jpg');
-    new Product('chair', 'assets/chair.jpg');
-    new Product('cthulhu', 'assets/cthulhu.jpg');
-    new Product('dog-duck', 'assets/dog-duck.jpg');
+  } else {
+    new Product("bag", "assets/bag.jpg");
+    new Product("banana", "assets/banana.jpg");
+    new Product("bathroom", "assets/bathroom.jpg");
+    new Product("boots", "assets/boots.jpg");
+    new Product("breakfast", "assets/breakfast.jpg");
+    new Product("bubblegum", "assets/bubblegum.jpg");
+    new Product("chair", "assets/chair.jpg");
+    new Product("cthulhu", "assets/cthulhu.jpg");
+    new Product("dog-duck", "assets/dog-duck.jpg");
     // new Product('scissors', 'assets/scissors.jpg');
     // new Product('shark', 'assets/shark.jpg');
     // new Product('pet-sweep', 'assets/sweep.jpg');
@@ -95,13 +102,12 @@ function loadLocalStorage(){
     // new Product('usb', 'assets/usb.gif');
     // new Product('water-can', 'assets/water-can.jpg');
     // new Product('wine-glass', 'assets/wine-glass.jpg');
-
   }
   imageGenerator();
 }
 
 function imageGenerator() {
-// //TODO: in order to make this have no repeats, use a do while
+  // //TODO: in order to make this have no repeats, use a do while
   do {
     var product1 = randomizer(productArray.length);
     console.log(product1);
@@ -109,11 +115,14 @@ function imageGenerator() {
     console.log(product2);
     var product3 = randomizer(productArray.length);
     console.log(product3);
-  } while
-  //look into using includes
-  // want to see if these products were recently used 
-  // declare array of viewed products
-  ((product1 === product2) || (product3 === product2) || (product3 === product1));
+  } while (
+    //look into using includes
+    // want to see if these products were recently used
+    // declare array of viewed products
+    product1 === product2 ||
+    product3 === product2 ||
+    product3 === product1
+  );
 
   productOneEl.title = productArray[product1].productTitle;
   productOneEl.src = productArray[product1].productSrc;
@@ -145,107 +154,110 @@ function seedChartData() {
 }
 
 function stopClicking() {
-  divEl.removeEventListener('click', handleClick);
-  divEl.textContent = '';
+  divEl.removeEventListener("click", handleClick);
+  divEl.textContent = "";
   // console.log('done');
 }
 
 //TODO: build a function that generates colors for each item on the chart
 function renderChart() {
-  var ctx = document.getElementById('myChart');
+  var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: "bar",
     data: {
       labels: seedChartData()[1],
-      datasets: [{
-        label: '# of Votes',
-        data: seedChartData()[0],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      },
-      {
-        label: '# of Views',
-        data: seedChartData()[2],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
+      datasets: [
+        {
+          label: "# of Votes",
+          data: seedChartData()[0],
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderWidth: 1,
+        },
+        {
+          label: "# of Views",
+          data: seedChartData()[2],
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
     },
     options: {
       scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
   });
 }
 
-
 Product.prototype.renderProductList = function () {
-  var productListUlElement = document.createElement('li');
+  var productListUlElement = document.createElement("li");
   // productListUlElement.textContent = 'ergasdfg';
-  productListUlElement.textContent = this.productTitle + ': ' + this.clicked + ', viewed ' + this.views;
+  productListUlElement.textContent =
+    this.productTitle + ": " + this.clicked + ", viewed " + this.views;
   productList.appendChild(productListUlElement);
 };
 
 Product.prototype.renderProductListClicks = function () {
-  var productListClicksUlElement = document.createElement('li');
+  var productListClicksUlElement = document.createElement("li");
   productListClicksUlElement.textContent = this.clicked;
   productList.appendChild(productListClicksUlElement);
 };
 
-function handleClick(event){
+function handleClick(event) {
   console.log(event);
   // make a variable to store the clicked product
   var clickedProductImage = event.target.title;
-  for (var i = 0; i < productArray.length ; i++) {
+  for (var i = 0; i < productArray.length; i++) {
     if (clickedProductImage === productArray[i].productTitle) {
-      console.log('additonally', productArray[i].productTitle);
-      console.log('Before',productArray[i].clicked);
+      console.log("additonally", productArray[i].productTitle);
+      console.log("Before", productArray[i].clicked);
       productArray[i].clicked++;
-      console.log('After',productArray[i].clicked);
+      console.log("After", productArray[i].clicked);
     }
   }
   // console.log(productArray);
   clickTracker--;
 
-  if(clickTracker === 0) {
-    for(i = 0 ; i < productArray.length; i++) {
+  if (clickTracker === 0) {
+    for (i = 0; i < productArray.length; i++) {
       productArray[i].renderProductList();
     }
-
 
     stopClicking();
     saveLocalStorage();
@@ -254,6 +266,6 @@ function handleClick(event){
   imageGenerator();
 }
 
-divEl.addEventListener('click', handleClick);
+divEl.addEventListener("click", handleClick);
 
 loadLocalStorage();
