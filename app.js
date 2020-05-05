@@ -8,7 +8,7 @@ var productThreeEl = document.getElementById("product-3");
 var divEl = document.getElementById("product-container");
 var productList = document.getElementById("productList");
 
-var clickTracker = 5;
+var clickTracker = 25;
 // var uniqueArray = [];
 // var unique = 6;
 // notes
@@ -26,8 +26,8 @@ function Product(title, src, clicked = 0, views = 0) {
 // console.log(uniqueArray);
 
 //randomizer
-function randomizer(max) {
-  return Math.floor(Math.random() * max);
+function randomizer() {
+  return Math.floor(Math.random() * 20);
   // return Math.floor(Math.random() * 20);
 }
 console.log(randomizer);
@@ -36,12 +36,25 @@ function fillArray() {
   while (randomArray.length < 6) {
     var tempRandomNumber = randomizer();
     if (randomArray.includes(tempRandomNumber)) {
-      console.log("repeat, repeat");
+      // console.log("repeat, repeat");
     } else {
       randomArray.push(tempRandomNumber);
     }
   }
 }
+
+function removeFromArray(){
+  console.log(randomArray.shift());
+  console.log(randomArray.shift());
+  console.log(randomArray.shift());
+}
+
+// fillArray();
+// removeFromArray();
+// fillArray();
+// console.log(randomArray);
+// removeFromArray();
+// console.log(randomArray);
 
 // while loop is less than SVGMatrix, run randome Array
 // if (.includes)
