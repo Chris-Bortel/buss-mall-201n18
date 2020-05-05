@@ -1,5 +1,6 @@
 'use strict';
 var productArray = [];
+var randomArray = [];
 
 
 var productOneEl = document.getElementById('product-1');
@@ -28,10 +29,14 @@ function Product(title, src, clicked=0, views=0) {
 //randomizer
 function randomizer (max) {
   return Math.floor(Math.random() * max);
+  // return Math.floor(Math.random() * 20);
 }
 console.log(randomizer);
 // make six unique numbers out of an array
+function fillArray ()
 
+// while loop is less than SVGMatrix, run randome Array
+// if (.includes)
 
 
 
