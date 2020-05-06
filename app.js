@@ -36,7 +36,7 @@ function fillArray() {
   while (randomArray.length < 6) {
     var tempRandomNumber = randomizer(productArray.length);
     if (randomArray.includes(tempRandomNumber)) {
-      // console.log("repeat, repeat");
+      console.log("repeat, repeat");
     } else {
       randomArray.push(tempRandomNumber);
     }
