@@ -43,10 +43,22 @@ function fillArray() {
   }
 }
 
-function removeFromArray(){
-  console.log(randomArray.shift());
-  console.log(randomArray.shift());
-  console.log(randomArray.shift());
+// function removeFromArray(){
+//   console.log(randomArray.shift());
+//   console.log(randomArray.shift());
+//   console.log(randomArray.shift());
+// }
+
+function imageGenerator(){
+  var pic1 = randomArray.shift();
+  var pic2 = randomArray.shift();
+  var pic3 = randomArray.shift();
+
+  picture1.src = productArray[pic1].src;
+  picture2.src = productArray[pic2].src;
+  picture3.src = productArray[pic3].src;
+
+  fillArray();
 }
 
 // fillArray();
@@ -116,42 +128,43 @@ function loadLocalStorage() {
     // new Product('water-can', 'assets/water-can.jpg');
     // new Product('wine-glass', 'assets/wine-glass.jpg');
   }
+  fillArray()
   imageGenerator();
 }
 
-function imageGenerator() {
-  // //TODO: in order to make this have no repeats, use a do while
-  do {
-    var product1 = randomizer(productArray.length);
-    console.log(product1);
-    var product2 = randomizer(productArray.length);
-    console.log(product2);
-    var product3 = randomizer(productArray.length);
-    console.log(product3);
-  } while (
-    //look into using includes
-    // want to see if these products were recently used
-    // declare array of viewed products
-    product1 === product2 ||
-    product3 === product2 ||
-    product3 === product1
-  );
+// function imageGenerator() {
+//   // //TODO: in order to make this have no repeats, use a do while
+//   do {
+//     var product1 = randomizer(productArray.length);
+//     console.log(product1);
+//     var product2 = randomizer(productArray.length);
+//     console.log(product2);
+//     var product3 = randomizer(productArray.length);
+//     console.log(product3);
+//   } while (
+//     //look into using includes
+//     // want to see if these products were recently used
+//     // declare array of viewed products
+//     product1 === product2 ||
+//     product3 === product2 ||
+//     product3 === product1
+//   );
 
-  productOneEl.title = productArray[product1].productTitle;
-  productOneEl.src = productArray[product1].productSrc;
-  productOneEl.alt = productArray[product1].productAlt;
-  productArray[product1].views++;
+//   productOneEl.title = productArray[product1].productTitle;
+//   productOneEl.src = productArray[product1].productSrc;
+//   productOneEl.alt = productArray[product1].productAlt;
+//   productArray[product1].views++;
 
-  productTwoEl.title = productArray[product2].productTitle;
-  productTwoEl.src = productArray[product2].productSrc;
-  productTwoEl.alt = productArray[product2].productAlt;
-  productArray[product2].views++;
+//   productTwoEl.title = productArray[product2].productTitle;
+//   productTwoEl.src = productArray[product2].productSrc;
+//   productTwoEl.alt = productArray[product2].productAlt;
+//   productArray[product2].views++;
 
-  productThreeEl.title = productArray[product3].productTitle;
-  productThreeEl.src = productArray[product3].productSrc;
-  productThreeEl.alt = productArray[product3].productalt;
-  productArray[product3].views++;
-}
+//   productThreeEl.title = productArray[product3].productTitle;
+//   productThreeEl.src = productArray[product3].productSrc;
+//   productThreeEl.alt = productArray[product3].productalt;
+//   productArray[product3].views++;
+// }
 
 function seedChartData() {
   var clickedArray = [];
