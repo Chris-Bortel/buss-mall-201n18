@@ -1,6 +1,5 @@
 "use strict";
 var productArray = [];
-var randomArray = [];
 
 var productOneEl = document.getElementById("product-1");
 var productTwoEl = document.getElementById("product-2");
@@ -8,15 +7,16 @@ var productThreeEl = document.getElementById("product-3");
 var divEl = document.getElementById("product-container");
 var productList = document.getElementById("productList");
 
+var randomArray = [];
 var clickTracker = 5;
 // var uniqueArray = [];
 // var unique = 6;
 // notes
 function Product(title, src, clicked = 0, views = 0) {
   // TODO: add clicked = 0 and views = 0
-  this.productTitle = title;
-  this.productSrc = src;
-  this.productAlt = title;
+  this.title = title;
+  this.src = src;
+  this.alt = title;
   this.clicked = clicked;
   this.views = views;
 
@@ -90,8 +90,8 @@ function loadLocalStorage() {
     console.log(localStorageProducts);
     for (var i = 0; i < localStorageProducts.length; i++) {
       new Product(
-        localStorageProducts[i].productTitle,
-        localStorageProducts[i].productSrc,
+        localStorageProducts[i].title,
+        localStorageProducts[i].src,
         localStorageProducts[i].clicked,
         localStorageProducts[i].views
       );
@@ -137,18 +137,18 @@ function imageGenerator() {
     product3 === product1
   );
 
-  productOneEl.title = productArray[product1].productTitle;
-  productOneEl.src = productArray[product1].productSrc;
-  productOneEl.alt = productArray[product1].productAlt;
+  productOneEl.title = productArray[product1].title;
+  productOneEl.src = productArray[product1].src;
+  productOneEl.alt = productArray[product1].alt;
   productArray[product1].views++;
 
-  productTwoEl.title = productArray[product2].productTitle;
-  productTwoEl.src = productArray[product2].productSrc;
-  productTwoEl.alt = productArray[product2].productAlt;
+  productTwoEl.title = productArray[product2].title;
+  productTwoEl.src = productArray[product2].src;
+  productTwoEl.alt = productArray[product2].alt;
   productArray[product2].views++;
 
-  productThreeEl.title = productArray[product3].productTitle;
-  productThreeEl.src = productArray[product3].productSrc;
+  productThreeEl.title = productArray[product3].title;
+  productThreeEl.src = productArray[product3].src;
   productThreeEl.alt = productArray[product3].productalt;
   productArray[product3].views++;
 }
@@ -160,7 +160,7 @@ function seedChartData() {
   console.log(viewedArray);
   for (var i = 0; i < productArray.length; i++) {
     clickedArray.push(productArray[i].clicked);
-    labelArray.push(productArray[i].productTitle);
+    labelArray.push(productArray[i].title);
     viewedArray.push(productArray[i].views);
   }
   return [clickedArray, labelArray, viewedArray];
@@ -242,7 +242,7 @@ Product.prototype.renderProductList = function () {
   var productListUlElement = document.createElement("li");
   // productListUlElement.textContent = 'ergasdfg';
   productListUlElement.textContent =
-    this.productTitle + ": " + this.clicked + ", viewed " + this.views;
+    this.title + ": " + this.clicked + ", viewed " + this.views;
   productList.appendChild(productListUlElement);
 };
 
@@ -257,8 +257,8 @@ function handleClick(event) {
   // make a variable to store the clicked product
   var clickedProductImage = event.target.title;
   for (var i = 0; i < productArray.length; i++) {
-    if (clickedProductImage === productArray[i].productTitle) {
-      console.log("additonally", productArray[i].productTitle);
+    if (clickedProductImage === productArray[i].title) {
+      console.log("additonally", productArray[i].title);
       console.log("Before", productArray[i].clicked);
       productArray[i].clicked++;
       console.log("After", productArray[i].clicked);
