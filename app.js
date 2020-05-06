@@ -188,11 +188,11 @@ new Product( "assets/dog-duck.jpg", "dog-duck");
 //   return [labelArray, clickedArray,  viewedArray];
 // }
 
-// function stopClicking() {
-//   divEl.removeEventListener("click", handleClick);
-//   divEl.textContent = "";
-//   // console.log('done');
-// }
+function stopClicking() {
+  divEl.removeEventListener("click", handleClick);
+  divEl.textContent = "";
+  // console.log('done');
+}
 
 //TODO: build a function that generates colors for each item on the chart
 // function renderChart() {
@@ -302,5 +302,6 @@ function handleClick(event) {
 }
 
 divEl.addEventListener("click", handleClick);
-
+fillArray();
+imageGenerator();
 // loadLocalStorage();
