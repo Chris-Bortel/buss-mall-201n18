@@ -88,7 +88,15 @@ new Product( "assets/bubblegum.jpg", "bubblegum");
 new Product( "assets/chair.jpg", "chair");
 new Product( "assets/cthulhu.jpg", "cthulhu");
 new Product( "assets/dog-duck.jpg", "dog-duck");
+// new Product( 'assets/scissors.jpg', 'scissors');
+// new Product( 'assets/shark.jpg', 'shark');
+// new Product( 'assets/sweep.jpg', 'pet-sweep');
+// new Product( 'assets/tauntaun.jpg', 'tauntaun');
+// new Product( 'assets/unicorn.jpg', 'unicorn');
 
+// new Product( 'assets/usb.gif', 'usb');
+// new Product( 'assets/water-can.jpg', 'water-can');
+// new Product( 'assets/wine-glass.jpg', 'wine-glass');
 // function removeFromArray(){
 //   console.log(randomArray.shift());
 //   console.log(randomArray.shift());
