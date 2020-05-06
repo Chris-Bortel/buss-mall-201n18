@@ -47,20 +47,12 @@ function fillArray() {
 function imageGenerator() {
   // //TODO: in order to make this have no repeats, use a do while
  
-    var product1 = randomArray.shift();
-    console.log(product1);
-    var product2 = randomArray.shift();;
-    console.log(product2);
-    var product3 = randomArray.shift();;
-    console.log(product3);
-  // } while (
-  //   //look into using includes
-  //   // want to see if these products were recently used
-  //   // declare array of viewed products
-  //   product1 === product2 ||
-  //   product3 === product2 ||
-  //   product3 === product1
-  // );
+  var product1 = randomArray.shift();
+  console.log(product1);
+  var product2 = randomArray.shift();;
+  console.log(product2);
+  var product3 = randomArray.shift();;
+  console.log(product3);
 
   productOneEl.src = productArray[product1].src;
   productOneEl.title = productArray[product1].title;
@@ -79,7 +71,32 @@ function imageGenerator() {
   fillArray();
 }
 
-new Product("assets/bag.jpg", "bag");
+
+
+// save to local storage
+
+function saveLocalStorage() {
+  var savedProducts = JSON.stringify(productArray);
+  localStorage.setItem("storedproducts", savedProducts);
+}
+
+function loadLocalStorage() {
+
+  if (localStorage.getItem("storedproducts")) {
+    var localStorageProducts = JSON.parse(
+      localStorage.getItem("storedproducts")
+    );
+    console.log(localStorageProducts);
+    for (var i = 0; i < localStorageProducts.length; i++) {
+      new Product(
+        localStorageProducts[i].src,
+        localStorageProducts[i].title,
+        localStorageProducts[i].clicked,
+        localStorageProducts[i].views
+      );
+    }
+  } else {
+//     new Product("assets/bag.jpg", "bag");
 new Product( "assets/banana.jpg", "banana");
 new Product( "assets/bathroom.jpg", "bathroom");
 new Product( "assets/boots.jpg", "boots");
@@ -97,82 +114,10 @@ new Product( "assets/dog-duck.jpg", "dog-duck");
 // new Product( 'assets/usb.gif', 'usb');
 // new Product( 'assets/water-can.jpg', 'water-can');
 // new Product( 'assets/wine-glass.jpg', 'wine-glass');
-// function removeFromArray(){
-//   console.log(randomArray.shift());
-//   console.log(randomArray.shift());
-//   console.log(randomArray.shift());
-// }
-
-// fillArray();
-// removeFromArray();
-// fillArray();
-// console.log(randomArray);
-// removeFromArray();
-// console.log(randomArray);
-
-// while loop is less than SVGMatrix, run randome Array
-// if (.includes)
-
-//   //first create the six
-//   //then do the pop
-
-// use pop method to pop the last three off the back and assign those to prod1 prod2 prod3 variables
-//// these three are rendered to the screen.
-// then, randomizer pushes three unique numbers to the front of uniqueSixArray
-
-//come up with way to keep this populated
-//// a while loop inside of a while loop
-
-// use push method to add the remaining three to the
-//  write a function to compare three old ones to three new ones
-//
-
-// save to local storage
-
-// function saveLocalStorage() {
-//   var savedProducts = JSON.stringify(productArray);
-//   localStorage.setItem("storedproducts", savedProducts);
-// }
-
-// function loadLocalStorage() {
-//   //check to see if there's stuff in local storage. if there is, thne we grab it and use that data
-//   //if local storage is empty, poceed as if it is the first time
-//   if (localStorage.getItem("storedproducts")) {
-//     var localStorageProducts = JSON.parse(
-//       localStorage.getItem("storedproducts")
-//     );
-//     console.log(localStorageProducts);
-//     for (var i = 0; i < localStorageProducts.length; i++) {
-//       new Product(
-//         localStorageProducts[i].src,
-//         localStorageProducts[i].title,
-//         localStorageProducts[i].clicked,
-//         localStorageProducts[i].views
-//       );
-//     }
-//   } else {
-//     new Product("assets/bag.jpg", "bag");
-//     new Product( "assets/banana.jpg", "banana");
-//     new Product( "assets/bathroom.jpg", "bathroom");
-//     new Product( "assets/boots.jpg", "boots");
-//     new Product( "assets/breakfast.jpg", "breakfast");
-//     new Product( "assets/bubblegum.jpg", "bubblegum");
-//     new Product( "assets/chair.jpg", "chair");
-//     new Product( "assets/cthulhu.jpg", "cthulhu");
-//     new Product( "assets/dog-duck.jpg", "dog-duck");
-//     // new Product('scissors', 'assets/scissors.jpg');
-//     // new Product('shark', 'assets/shark.jpg');
-//     // new Product('pet-sweep', 'assets/sweep.jpg');
-//     // new Product('tauntaun', 'assets/tauntaun.jpg');
-//     // new Product('unicorn', 'assets/unicorn.jpg');
-//     // // new Product('unicorn', 'assets/unicorn.jpg');
-//     // new Product('usb', 'assets/usb.gif');
-//     // new Product('water-can', 'assets/water-can.jpg');
-//     // new Product('wine-glass', 'assets/wine-glass.jpg');
 //   }
 //   imageGenerator();
+}
 // }
-
 
 
 // function seedChartData() {
@@ -295,7 +240,7 @@ function handleClick(event) {
     }
 
     stopClicking();
-    // saveLocalStorage();
+    saveLocalStorage();
     // renderChart();
   }
   imageGenerator();
@@ -304,4 +249,4 @@ function handleClick(event) {
 divEl.addEventListener("click", handleClick);
 fillArray();
 imageGenerator();
-// loadLocalStorage();
+loadLocalStorage();
