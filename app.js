@@ -7,6 +7,7 @@ var productThreeEl = document.getElementById("product-3");
 var divEl = document.getElementById("product-container");
 var productList = document.getElementById("productList");
 
+
 var randomArray = [];
 var clickTracker = 5;
 // var uniqueArray = [];
@@ -83,16 +84,15 @@ function saveLocalStorage() {
 function loadLocalStorage() {
 
   if (localStorage.getItem("storedproducts")) {
-    var localStorageProducts = JSON.parse(
-      localStorage.getItem("storedproducts")
-    );
-    console.log(localStorageProducts);
-    for (var i = 0; i < localStorageProducts.length; i++) {
+    var getproducts = JSON.parse(
+      localStorage.getItem("storedproducts"));
+    console.log(getproducts);
+    for (var i = 0; i < getproduct.length; i++) {
       new Product(
-        localStorageProducts[i].src,
-        localStorageProducts[i].title,
-        localStorageProducts[i].clicked,
-        localStorageProducts[i].views
+        getproducts[i].src,
+        getproducts[i].title,
+        getproducts[i].clicked,
+        getproducts[i].views
       );
     }
   } else {
@@ -115,9 +115,9 @@ new Product( "assets/dog-duck.jpg", "dog-duck");
 // new Product( 'assets/water-can.jpg', 'water-can');
 // new Product( 'assets/wine-glass.jpg', 'wine-glass');
 //   }
-//   imageGenerator();
+  // imageGenerator();
+  }
 }
-// }
 
 
 // function seedChartData() {
@@ -221,30 +221,38 @@ Product.prototype.renderProductListClicks = function () {
 
 function handleClick(event) {
   console.log(event);
-  // make a variable to store the clicked product
+  
   var clickedProductImage = event.target.title;
+  totalClicks--;
+  // make a variable to store the clicked product
   for (var i = 0; i < productArray.length; i++) {
     if (clickedProductImage === productArray[i].title) {
-      console.log("additonally", productArray[i].title);
-      console.log("Before", productArray[i].clicked);
       productArray[i].clicked++;
-      console.log("After", productArray[i].clicked);
+      // console.log("additonally", productArray[i].title);
+      // console.log("Before", productArray[i].clicked);
+      // console.log("After", productArray[i].clicked);
     }
   }
   // console.log(productArray);
-  clickTracker--;
-
-  if (clickTracker === 0) {
-    for (i = 0; i < productArray.length; i++) {
-      productArray[i].renderProductList();
-    }
-
-    stopClicking();
+  // clickTracker--;
+  if (clickTracker < 1){
     saveLocalStorage();
-    // renderChart();
+    productList.removeEventListener('click', handleClick);
+  } else {
+    imageGenerator()
   }
-  imageGenerator();
 }
+stopClicking();
+saveLocalStorage();
+//   if (clickTracker === 0) {
+//     for (i = 0; i < productArray.length; i++) {
+//       productArray[i].renderProductList();
+//     } else {
+//   imageGenerator();
+
+//     // renderChart();
+//   }
+// }
 
 divEl.addEventListener("click", handleClick);
 fillArray();
