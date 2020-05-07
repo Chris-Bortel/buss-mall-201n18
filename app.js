@@ -244,6 +244,10 @@ function handleClick(event) {
     imageGenerator()
   }
   // console.log(clickTracker)
+  if (clickTracker === 0) {
+        for (i = 0; i < productArray.length; i++) {
+          productArray[i].renderProductList();
+  }
 }
 // stopClicking();
 // saveLocalStorage();
@@ -256,7 +260,7 @@ function handleClick(event) {
 //     // renderChart();
 //   }
 // }
-
+}
 divEl.addEventListener("click", handleClick);
 loadLocalStorage();
 fillArray();
