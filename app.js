@@ -47,15 +47,17 @@ function fillArray() {
 
 function imageGenerator() {
   // //TODO: in order to make this have no repeats, use a do while
- 
+  fillArray();
   var product1 = randomArray.shift();
   console.log(product1);
   var product2 = randomArray.shift();;
   console.log(product2);
   var product3 = randomArray.shift();;
-  console.log(product3);
+  console.log(productArray);
 
   productOneEl.src = productArray[product1].src;
+  console.log(productOneEl.src);
+  console.log(productArray[product1].src);
   productOneEl.title = productArray[product1].title;
   productOneEl.alt = productArray[product1].alt;
   productArray[product1].views++;
@@ -69,12 +71,8 @@ function imageGenerator() {
   productThreeEl.title = productArray[product3].title;
   productThreeEl.alt = productArray[product3].alt;
   productArray[product3].views++;
-  fillArray();
+ 
 }
-
-
-
-// save to local storage
 
 function saveLocalStorage() {
   var savedProducts = JSON.stringify(productArray);
@@ -96,26 +94,27 @@ function loadLocalStorage() {
       );
     }
   } else {
-//     new Product("assets/bag.jpg", "bag");
-new Product( "assets/banana.jpg", "banana");
-new Product( "assets/bathroom.jpg", "bathroom");
-new Product( "assets/boots.jpg", "boots");
-new Product( "assets/breakfast.jpg", "breakfast");
-new Product( "assets/bubblegum.jpg", "bubblegum");
-new Product( "assets/chair.jpg", "chair");
-new Product( "assets/cthulhu.jpg", "cthulhu");
-new Product( "assets/dog-duck.jpg", "dog-duck");
-// new Product( 'assets/scissors.jpg', 'scissors');
-// new Product( 'assets/shark.jpg', 'shark');
-// new Product( 'assets/sweep.jpg', 'pet-sweep');
-// new Product( 'assets/tauntaun.jpg', 'tauntaun');
-// new Product( 'assets/unicorn.jpg', 'unicorn');
+    new Product("assets/bag.jpg", "bag");
+    new Product( "assets/banana.jpg", "banana");
+    new Product( "assets/bathroom.jpg", "bathroom");
+    new Product( "assets/boots.jpg", "boots");
+    new Product( "assets/breakfast.jpg", "breakfast");
+    new Product( "assets/bubblegum.jpg", "bubblegum");
+    new Product( "assets/chair.jpg", "chair");
+    new Product( "assets/cthulhu.jpg", "cthulhu");
+    new Product( "assets/dog-duck.jpg", "dog-duck");
+    // new Product( 'assets/scissors.jpg', 'scissors');
+    // new Product( 'assets/shark.jpg', 'shark');
+    // new Product( 'assets/sweep.jpg', 'pet-sweep');
+    // new Product( 'assets/tauntaun.jpg', 'tauntaun');
+    // new Product( 'assets/unicorn.jpg', 'unicorn');
 
-// new Product( 'assets/usb.gif', 'usb');
-// new Product( 'assets/water-can.jpg', 'water-can');
-// new Product( 'assets/wine-glass.jpg', 'wine-glass');
-//   }
-  // imageGenerator();
+    // new Product( 'assets/usb.gif', 'usb');
+    // new Product( 'assets/water-can.jpg', 'water-can');
+    // new Product( 'assets/wine-glass.jpg', 'wine-glass');
+    //   }
+
+  imageGenerator();
   }
 }
 
@@ -228,9 +227,6 @@ function handleClick(event) {
   for (var i = 0; i < productArray.length; i++) {
     if (clickedProductImage === productArray[i].title) {
       productArray[i].clicked++;
-      // console.log("additonally", productArray[i].title);
-      // console.log("Before", productArray[i].clicked);
-      // console.log("After", productArray[i].clicked);
     }
   }
   // console.log(productArray);
@@ -243,7 +239,7 @@ function handleClick(event) {
   }
 }
 stopClicking();
-saveLocalStorage();
+// saveLocalStorage();
 //   if (clickTracker === 0) {
 //     for (i = 0; i < productArray.length; i++) {
 //       productArray[i].renderProductList();
@@ -255,6 +251,4 @@ saveLocalStorage();
 // }
 
 divEl.addEventListener("click", handleClick);
-fillArray();
-imageGenerator();
 loadLocalStorage();
