@@ -7,14 +7,10 @@ var productThreeEl = document.getElementById("product-3");
 var divEl = document.getElementById("product-container");
 var productList = document.getElementById("productList");
 
-
 var randomArray = [];
 var clickTracker = 5;
-// var uniqueArray = [];
-// var unique = 6;
-// notes
+
 function Product( src, title, clicked = 0, views = 0) {
-  // TODO: add clicked = 0 and views = 0
   this.src = src;
   this.title = title;
   this.alt = title;
@@ -24,15 +20,12 @@ function Product( src, title, clicked = 0, views = 0) {
   productArray.push(this);
   // console.log(this.click);
 }
-// console.log(uniqueArray);
 
-//randomizer
 function randomizer(max) {
   return Math.floor(Math.random() * max);
-  // return Math.floor(Math.random() * 20);
 }
-console.log(randomizer);
-// make six unique numbers out of an array
+// console.log(randomizer);
+
 function fillArray() {
   while (randomArray.length < 6) {
     var tempRandomNumber = randomizer(productArray.length);
@@ -46,14 +39,10 @@ function fillArray() {
 }
 
 function imageGenerator() {
-  // //TODO: in order to make this have no repeats, use a do while
   fillArray();
   var product1 = randomArray.shift();
-  console.log(product1);
   var product2 = randomArray.shift();;
-  console.log(product2);
   var product3 = randomArray.shift();;
-  console.log(productArray);
 
   productOneEl.src = productArray[product1].src;
   console.log(productOneEl.src);
@@ -63,20 +52,24 @@ function imageGenerator() {
   productArray[product1].views++;
 
   productTwoEl.src = productArray[product2].src;
+  console.log(productTwoEl.src);
+  console.log(productArray[product2].src);
   productTwoEl.title = productArray[product2].title;
   productTwoEl.alt = productArray[product2].alt;
   productArray[product2].views++;
 
   productThreeEl.src = productArray[product3].src;
+  console.log(productThreeEl.src);
+  console.log(productArray[product3].src);
   productThreeEl.title = productArray[product3].title;
   productThreeEl.alt = productArray[product3].alt;
   productArray[product3].views++;
- 
 }
 
 function saveLocalStorage() {
   var savedProducts = JSON.stringify(productArray);
   localStorage.setItem("storedproducts", savedProducts);
+  // console.log(sav)
 }
 
 function loadLocalStorage() {
@@ -103,16 +96,16 @@ function loadLocalStorage() {
     new Product( "assets/chair.jpg", "chair");
     new Product( "assets/cthulhu.jpg", "cthulhu");
     new Product( "assets/dog-duck.jpg", "dog-duck");
-    // new Product( 'assets/scissors.jpg', 'scissors');
-    // new Product( 'assets/shark.jpg', 'shark');
-    // new Product( 'assets/sweep.jpg', 'pet-sweep');
-    // new Product( 'assets/tauntaun.jpg', 'tauntaun');
-    // new Product( 'assets/unicorn.jpg', 'unicorn');
+    new Product( 'assets/scissors.jpg', 'scissors');
+    new Product( 'assets/shark.jpg', 'shark');
+    new Product( 'assets/sweep.jpg', 'pet-sweep');
+    new Product( 'assets/tauntaun.jpg', 'tauntaun');
+    new Product( 'assets/unicorn.jpg', 'unicorn');
 
-    // new Product( 'assets/usb.gif', 'usb');
-    // new Product( 'assets/water-can.jpg', 'water-can');
-    // new Product( 'assets/wine-glass.jpg', 'wine-glass');
-    //   }
+    new Product( 'assets/usb.gif', 'usb');
+    new Product( 'assets/water-can.jpg', 'water-can');
+    new Product( 'assets/wine-glass.jpg', 'wine-glass');
+      
 
   imageGenerator();
   }
@@ -219,17 +212,16 @@ Product.prototype.renderProductListClicks = function () {
 };
 
 function handleClick(event) {
-  console.log(event);
+  // console.log(event);
   
   var clickedProductImage = event.target.title;
-  totalClicks--;
+  clickTracker--;
   // make a variable to store the clicked product
   for (var i = 0; i < productArray.length; i++) {
     if (clickedProductImage === productArray[i].title) {
       productArray[i].clicked++;
     }
   }
-  // console.log(productArray);
   // clickTracker--;
   if (clickTracker < 1){
     saveLocalStorage();
@@ -238,7 +230,7 @@ function handleClick(event) {
     imageGenerator()
   }
 }
-stopClicking();
+// stopClicking();
 // saveLocalStorage();
 //   if (clickTracker === 0) {
 //     for (i = 0; i < productArray.length; i++) {
@@ -252,3 +244,4 @@ stopClicking();
 
 divEl.addEventListener("click", handleClick);
 loadLocalStorage();
+
