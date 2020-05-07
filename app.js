@@ -1,6 +1,6 @@
 "use strict";
 var productArray = [];
-
+console.log(productArray);
 var productOneEl = document.getElementById("product-1");
 var productTwoEl = document.getElementById("product-2");
 var productThreeEl = document.getElementById("product-3");
@@ -8,7 +8,8 @@ var divEl = document.getElementById("product-container");
 var productList = document.getElementById("productList");
 
 var randomArray = [];
-var clickTracker = 5;
+
+var clickTracker = 10;
 
 function Product( src, title, clicked = 0, views = 0) {
   this.src = src;
@@ -40,37 +41,44 @@ function fillArray() {
 
 function imageGenerator() {
   fillArray();
+  // console.log("i am filled", fillArray)
   var product1 = randomArray.shift();
   var product2 = randomArray.shift();;
   var product3 = randomArray.shift();;
-
+console.log('product1: ', product1)
+console.log('product2: ', product2)
+console.log('product3: ', product3)
   productOneEl.src = productArray[product1].src;
-  console.log(productOneEl.src);
-  console.log(productArray[product1].src);
+  // console.log(productOneEl.src);
+  // console.log(productArray[product1].src);
   productOneEl.title = productArray[product1].title;
   productOneEl.alt = productArray[product1].alt;
   productArray[product1].views++;
+  // console.log( 'product1 viewed', [product1]);
 
   productTwoEl.src = productArray[product2].src;
-  console.log(productTwoEl.src);
-  console.log(productArray[product2].src);
+  // console.log(productTwoEl.src);
+  // console.log(productArray[product2].src);
   productTwoEl.title = productArray[product2].title;
   productTwoEl.alt = productArray[product2].alt;
   productArray[product2].views++;
 
   productThreeEl.src = productArray[product3].src;
-  console.log(productThreeEl.src);
-  console.log(productArray[product3].src);
+  // console.log(productThreeEl.src);
+  // console.log(productArray[product3].src);
   productThreeEl.title = productArray[product3].title;
   productThreeEl.alt = productArray[product3].alt;
   productArray[product3].views++;
 }
+// console.log(imageGenerator)
 
 function saveLocalStorage() {
   var savedProducts = JSON.stringify(productArray);
   localStorage.setItem("storedproducts", savedProducts);
-  // console.log(sav)
+  console.log(savedProducts);
+  // console.log(saveLocalStorage())
 }
+// console.log(imageGenerator)
 
 function loadLocalStorage() {
 
@@ -78,13 +86,15 @@ function loadLocalStorage() {
     var getproducts = JSON.parse(
       localStorage.getItem("storedproducts"));
     console.log(getproducts);
-    for (var i = 0; i < getproduct.length; i++) {
+    for (var i = 0; i < getproducts.length; i++) {
       new Product(
         getproducts[i].src,
         getproducts[i].title,
         getproducts[i].clicked,
         getproducts[i].views
-      );
+        );
+        console.log(getproducts.length)
+        // console.log(loadLocalStorage());
     }
   } else {
     new Product("assets/bag.jpg", "bag");
@@ -125,11 +135,8 @@ function loadLocalStorage() {
 //   return [labelArray, clickedArray,  viewedArray];
 // }
 
-function stopClicking() {
-  divEl.removeEventListener("click", handleClick);
-  divEl.textContent = "";
-  // console.log('done');
-}
+
+// console.log(stopClicking())
 
 //TODO: build a function that generates colors for each item on the chart
 // function renderChart() {
@@ -199,7 +206,7 @@ function stopClicking() {
 
 Product.prototype.renderProductList = function () {
   var productListUlElement = document.createElement("li");
-  // productListUlElement.textContent = 'ergasdfg';
+console.log (productListUlElement);
   productListUlElement.textContent =
     this.title + ": " + this.clicked + ", viewed " + this.views;
   productList.appendChild(productListUlElement);
@@ -216,6 +223,7 @@ function handleClick(event) {
   
   var clickedProductImage = event.target.title;
   clickTracker--;
+  console.log(clickedProductImage);
   // make a variable to store the clicked product
   for (var i = 0; i < productArray.length; i++) {
     if (clickedProductImage === productArray[i].title) {
@@ -223,12 +231,19 @@ function handleClick(event) {
     }
   }
   // clickTracker--;
+  // console.log(productArray)
+  console.log('click tracker', clickTracker--);
   if (clickTracker < 1){
     saveLocalStorage();
-    productList.removeEventListener('click', handleClick);
+    // console.log(saveLocalStorage);
+    divEl.removeEventListener('click', handleClick);
+    
+    //TODO: This is showing up undefined
+    console.log('listed: ', productList.removeEventListener('click', handleClick));
   } else {
     imageGenerator()
   }
+  // console.log(clickTracker)
 }
 // stopClicking();
 // saveLocalStorage();
@@ -236,7 +251,7 @@ function handleClick(event) {
 //     for (i = 0; i < productArray.length; i++) {
 //       productArray[i].renderProductList();
 //     } else {
-//   imageGenerator();
+  // imageGenerator();
 
 //     // renderChart();
 //   }
@@ -244,4 +259,7 @@ function handleClick(event) {
 
 divEl.addEventListener("click", handleClick);
 loadLocalStorage();
+fillArray();
+imageGenerator();
+// saveLocalStorage();
 
