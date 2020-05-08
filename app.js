@@ -241,12 +241,12 @@ function handleClick(event) {
   } else {
     imageGenerator();
   }
-  renderChart();
   // console.log(clickTracker)
   if (clickTracker === 0) {
     for (i = 0; i < productArray.length; i++) {
       productArray[i].renderProductList();
     }
+    renderChart();
   }
   // renderchart();
 
