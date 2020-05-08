@@ -1,254 +1,270 @@
-'use strict';
+"use strict";
 var productArray = [];
+console.log(productArray);
+var productOneEl = document.getElementById("product-1");
+var productTwoEl = document.getElementById("product-2");
+var productThreeEl = document.getElementById("product-3");
+var divEl = document.getElementById("product-container");
+var productList = document.getElementById("productList");
 
+var randomArray = [];
 
-var productOneEl = document.getElementById('product-1');
-var productTwoEl = document.getElementById('product-2');
-var productThreeEl = document.getElementById('product-3');
-var divEl = document.getElementById('product-container');
-var productList = document.getElementById('productList');
+var clickTracker = 10;
 
-var clickTracker = 5;
-// var uniqueArray = [];
-// var unique = 6;
-// notes
-function Product(title, src, clicked=0, views=0) {
-  // TODO: add clicked = 0 and views = 0
-  this.productTitle = title;
-  this.productSrc = src;
-  this.productAlt = title;
+function Product(src, title, clicked = 0, views = 0) {
+  this.src = src;
+  this.title = title;
+  this.alt = title;
   this.clicked = clicked;
   this.views = views;
 
   productArray.push(this);
   // console.log(this.click);
 }
-// console.log(uniqueArray);
 
-//randomizer
-function randomizer (max) {
+function randomizer(max) {
   return Math.floor(Math.random() * max);
 }
-console.log(randomizer);
-// make six unique numbers out of an array
+// console.log(randomizer);
 
-
-
-
-//   //first create the six
-//   //then do the pop
-
-
-
-
-// use pop method to pop the last three off the back and assign those to prod1 prod2 prod3 variables
-//// these three are rendered to the screen.
-// then, randomizer pushes three unique numbers to the front of uniqueSixArray
-
-//come up with way to keep this populated
-//// a while loop inside of a while loop
-
-// use push method to add the remaining three to the
-//  write a function to compare three old ones to three new ones
-//
-
-// save to local storage
-
-
-function saveLocalStorage(){
-  var savedProducts = JSON.stringify(productArray);
-  localStorage.setItem('storedproducts', savedProducts);
-}
-
-function loadLocalStorage(){
-  //check to see if there's stuff in local storage. if there is, thne we grab it and use that data
-  //if local storage is empty, poceed as if it is the first time
-  if(localStorage.getItem('storedproducts')){
-    var localStorageProducts = JSON.parse(localStorage.getItem('storedproducts'));
-    console.log(localStorageProducts);
-    for(var i = 0; i < localStorageProducts.length; i++){
-      new Product(localStorageProducts[i].productTitle, localStorageProducts[i].productSrc, localStorageProducts[i].clicked, localStorageProducts[i].views);
+function fillArray() {
+  while (randomArray.length < 6) {
+    var tempRandomNumber = randomizer(productArray.length);
+    if (randomArray.includes(tempRandomNumber)) {
+      console.log("repeat, repeat");
+    } else {
+      randomArray.push(tempRandomNumber);
     }
   }
-
-  else{
-    new Product('bag', 'assets/bag.jpg');
-    new Product('banana', 'assets/banana.jpg');
-    new Product('bathroom', 'assets/bathroom.jpg');
-    new Product('boots', 'assets/boots.jpg');
-    new Product('breakfast', 'assets/breakfast.jpg');
-    new Product('bubblegum', 'assets/bubblegum.jpg');
-    new Product('chair', 'assets/chair.jpg');
-    new Product('cthulhu', 'assets/cthulhu.jpg');
-    new Product('dog-duck', 'assets/dog-duck.jpg');
-    // new Product('scissors', 'assets/scissors.jpg');
-    // new Product('shark', 'assets/shark.jpg');
-    // new Product('pet-sweep', 'assets/sweep.jpg');
-    // new Product('tauntaun', 'assets/tauntaun.jpg');
-    // new Product('unicorn', 'assets/unicorn.jpg');
-    // // new Product('unicorn', 'assets/unicorn.jpg');
-    // new Product('usb', 'assets/usb.gif');
-    // new Product('water-can', 'assets/water-can.jpg');
-    // new Product('wine-glass', 'assets/wine-glass.jpg');
-
-  }
-  imageGenerator();
+  console.log(randomArray);
 }
 
 function imageGenerator() {
-// //TODO: in order to make this have no repeats, use a do while
-  do {
-    var product1 = randomizer(productArray.length);
-    console.log(product1);
-    var product2 = randomizer(productArray.length);
-    console.log(product2);
-    var product3 = randomizer(productArray.length);
-    console.log(product3);
-  } while
-  //look into using includes
-  // want to see if these products were recently used 
-  // declare array of viewed products
-  ((product1 === product2) || (product3 === product2) || (product3 === product1));
-
-  productOneEl.title = productArray[product1].productTitle;
-  productOneEl.src = productArray[product1].productSrc;
-  productOneEl.alt = productArray[product1].productAlt;
+  fillArray();
+  // console.log("i am filled", fillArray)
+  var product1 = randomArray.shift();
+  var product2 = randomArray.shift();
+  var product3 = randomArray.shift();
+  console.log("product1: ", product1);
+  console.log("product2: ", product2);
+  console.log("product3: ", product3);
+  productOneEl.src = productArray[product1].src;
+  // console.log(productOneEl.src);
+  // console.log(productArray[product1].src);
+  productOneEl.title = productArray[product1].title;
+  productOneEl.alt = productArray[product1].alt;
   productArray[product1].views++;
+  // console.log( 'product1 viewed', [product1]);
 
-  productTwoEl.title = productArray[product2].productTitle;
-  productTwoEl.src = productArray[product2].productSrc;
-  productTwoEl.alt = productArray[product2].productAlt;
+  productTwoEl.src = productArray[product2].src;
+  // console.log(productTwoEl.src);
+  // console.log(productArray[product2].src);
+  productTwoEl.title = productArray[product2].title;
+  productTwoEl.alt = productArray[product2].alt;
   productArray[product2].views++;
 
-  productThreeEl.title = productArray[product3].productTitle;
-  productThreeEl.src = productArray[product3].productSrc;
-  productThreeEl.alt = productArray[product3].productalt;
+  productThreeEl.src = productArray[product3].src;
+  // console.log(productThreeEl.src);
+  // console.log(productArray[product3].src);
+  productThreeEl.title = productArray[product3].title;
+  productThreeEl.alt = productArray[product3].alt;
   productArray[product3].views++;
+}
+// console.log(imageGenerator)
+
+function saveLocalStorage() {
+  var savedProducts = JSON.stringify(productArray);
+  localStorage.setItem("storedproducts", savedProducts);
+  console.log(savedProducts);
+  // console.log(saveLocalStorage())
+}
+// console.log(imageGenerator)
+
+function loadLocalStorage() {
+  if (localStorage.getItem("storedproducts")) {
+    var getproducts = JSON.parse(localStorage.getItem("storedproducts"));
+    console.log(getproducts);
+    for (var i = 0; i < getproducts.length; i++) {
+      new Product(
+        getproducts[i].src,
+        getproducts[i].title,
+        getproducts[i].clicked,
+        getproducts[i].views
+      );
+      console.log(getproducts.length);
+      // console.log(loadLocalStorage());
+    }
+  } else {
+    new Product("assets/bag.jpg", "bag");
+    new Product("assets/banana.jpg", "banana");
+    new Product("assets/bathroom.jpg", "bathroom");
+    new Product("assets/boots.jpg", "boots");
+    new Product("assets/breakfast.jpg", "breakfast");
+    new Product("assets/bubblegum.jpg", "bubblegum");
+    new Product("assets/chair.jpg", "chair");
+    new Product("assets/cthulhu.jpg", "cthulhu");
+    new Product("assets/dog-duck.jpg", "dog-duck");
+    new Product("assets/scissors.jpg", "scissors");
+    new Product("assets/shark.jpg", "shark");
+    new Product("assets/sweep.jpg", "pet-sweep");
+    new Product("assets/tauntaun.jpg", "tauntaun");
+    new Product("assets/unicorn.jpg", "unicorn");
+
+    new Product("assets/usb.gif", "usb");
+    new Product("assets/water-can.jpg", "water-can");
+    new Product("assets/wine-glass.jpg", "wine-glass");
+
+    imageGenerator();
+  }
 }
 
 function seedChartData() {
-  var clickedArray = [];
   var labelArray = [];
+  var clickedArray = [];
   var viewedArray = [];
   console.log(viewedArray);
   for (var i = 0; i < productArray.length; i++) {
     clickedArray.push(productArray[i].clicked);
-    labelArray.push(productArray[i].productTitle);
+    labelArray.push(productArray[i].title);
     viewedArray.push(productArray[i].views);
   }
-  return [clickedArray, labelArray, viewedArray];
+  return [clickedArray, labelArray,  viewedArray];
 }
 
-function stopClicking() {
-  divEl.removeEventListener('click', handleClick);
-  divEl.textContent = '';
-  // console.log('done');
-}
+// console.log(stopClicking())
 
-//TODO: build a function that generates colors for each item on the chart
+// TODO: build a function that generates colors for each item on the chart
 function renderChart() {
-  var ctx = document.getElementById('myChart');
+  var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: "bar",
     data: {
       labels: seedChartData()[1],
-      datasets: [{
-        label: '# of Votes',
-        data: seedChartData()[0],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      },
-      {
-        label: '# of Views',
-        data: seedChartData()[2],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-      }]
+      datasets: [
+        {
+          label: "# of Votes",
+          data: seedChartData()[0],
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderWidth: 1,
+        },
+        {
+          label: "# of Views",
+          data: seedChartData()[2],
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
     },
     options: {
       scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
+      },
+    },
   });
 }
 
-
 Product.prototype.renderProductList = function () {
-  var productListUlElement = document.createElement('li');
-  // productListUlElement.textContent = 'ergasdfg';
-  productListUlElement.textContent = this.productTitle + ': ' + this.clicked + ', viewed ' + this.views;
+  var productListUlElement = document.createElement("li");
+  console.log(productListUlElement);
+  productListUlElement.textContent =
+    this.title + ": " + this.clicked + ", viewed " + this.views;
   productList.appendChild(productListUlElement);
 };
 
 Product.prototype.renderProductListClicks = function () {
-  var productListClicksUlElement = document.createElement('li');
+  var productListClicksUlElement = document.createElement("li");
   productListClicksUlElement.textContent = this.clicked;
   productList.appendChild(productListClicksUlElement);
 };
 
-function handleClick(event){
-  console.log(event);
-  // make a variable to store the clicked product
+function handleClick(event) {
+  // console.log(event);
+
   var clickedProductImage = event.target.title;
-  for (var i = 0; i < productArray.length ; i++) {
-    if (clickedProductImage === productArray[i].productTitle) {
-      console.log('additonally', productArray[i].productTitle);
-      console.log('Before',productArray[i].clicked);
+  clickTracker--;
+  console.log(clickedProductImage);
+  // make a variable to store the clicked product
+  for (var i = 0; i < productArray.length; i++) {
+    if (clickedProductImage === productArray[i].title) {
       productArray[i].clicked++;
-      console.log('After',productArray[i].clicked);
     }
   }
-  // console.log(productArray);
-  clickTracker--;
+  // clickTracker--;
+  // console.log(productArray)
+  // console.log("click tracker", clickTracker--);
+  if (clickTracker < 1) {
+    saveLocalStorage();
+    console.log(saveLocalStorage);
+    divEl.removeEventListener("click", handleClick);
 
-  if(clickTracker === 0) {
-    for(i = 0 ; i < productArray.length; i++) {
+    //TODO: This is showing up undefined
+    console.log(
+      "listed: ",
+      productList.removeEventListener("click", handleClick)
+    );
+  } else {
+    imageGenerator();
+  }
+  // console.log(clickTracker)
+  if (clickTracker === 0) {
+    for (i = 0; i < productArray.length; i++) {
       productArray[i].renderProductList();
     }
-
-
-    stopClicking();
-    saveLocalStorage();
     renderChart();
   }
-  imageGenerator();
+  // renderchart();
+
+  // stopClicking();
+  // saveLocalStorage();
+  //   if (clickTracker === 0) {
+  //     for (i = 0; i < productArray.length; i++) {
+  //       productArray[i].renderProductList();
+  //     } else {
+  // imageGenerator();
+
+  //     // renderChart();
+  //   }
+  // }
 }
-
-divEl.addEventListener('click', handleClick);
-
+divEl.addEventListener("click", handleClick);
 loadLocalStorage();
+fillArray();
+imageGenerator();
+
+// saveLocalStorage();
