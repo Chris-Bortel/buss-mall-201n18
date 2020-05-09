@@ -9,7 +9,7 @@ var productList = document.getElementById("productList");
 
 var randomArray = [];
 
-var clickTracker = 10;
+var clickTracker = 25;
 
 function Product(src, title, clicked = 0, views = 0) {
   this.src = src;
