@@ -19,13 +19,11 @@ function Product(src, title, clicked = 0, views = 0) {
   this.views = views;
 
   productArray.push(this);
-  // console.log(this.click);
 }
 
 function randomizer(max) {
   return Math.floor(Math.random() * max);
 }
-// console.log(randomizer);
 
 function fillArray() {
   while (randomArray.length < 6) {
@@ -41,31 +39,21 @@ function fillArray() {
 
 function imageGenerator() {
   fillArray();
-  // console.log("i am filled", fillArray)
   var product1 = randomArray.shift();
   var product2 = randomArray.shift();
   var product3 = randomArray.shift();
-  console.log("product1: ", product1);
-  console.log("product2: ", product2);
-  console.log("product3: ", product3);
+
   productOneEl.src = productArray[product1].src;
-  // console.log(productOneEl.src);
-  // console.log(productArray[product1].src);
   productOneEl.title = productArray[product1].title;
   productOneEl.alt = productArray[product1].alt;
   productArray[product1].views++;
-  // console.log( 'product1 viewed', [product1]);
 
   productTwoEl.src = productArray[product2].src;
-  // console.log(productTwoEl.src);
-  // console.log(productArray[product2].src);
   productTwoEl.title = productArray[product2].title;
   productTwoEl.alt = productArray[product2].alt;
   productArray[product2].views++;
 
   productThreeEl.src = productArray[product3].src;
-  // console.log(productThreeEl.src);
-  // console.log(productArray[product3].src);
   productThreeEl.title = productArray[product3].title;
   productThreeEl.alt = productArray[product3].alt;
   productArray[product3].views++;
@@ -109,7 +97,6 @@ function loadLocalStorage() {
     new Product("assets/sweep.jpg", "pet-sweep");
     new Product("assets/tauntaun.jpg", "tauntaun");
     new Product("assets/unicorn.jpg", "unicorn");
-
     new Product("assets/usb.gif", "usb");
     new Product("assets/water-can.jpg", "water-can");
     new Product("assets/wine-glass.jpg", "wine-glass");
@@ -131,9 +118,6 @@ function seedChartData() {
   return [clickedArray, labelArray,  viewedArray];
 }
 
-// console.log(stopClicking())
-
-// TODO: build a function that generates colors for each item on the chart
 function renderChart() {
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
@@ -248,20 +232,8 @@ function handleClick(event) {
     }
     renderChart();
   }
-  // renderchart();
+} 
 
-  // stopClicking();
-  // saveLocalStorage();
-  //   if (clickTracker === 0) {
-  //     for (i = 0; i < productArray.length; i++) {
-  //       productArray[i].renderProductList();
-  //     } else {
-  // imageGenerator();
-
-  //     // renderChart();
-  //   }
-  // }
-}
 divEl.addEventListener("click", handleClick);
 loadLocalStorage();
 fillArray();
